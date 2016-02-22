@@ -2,7 +2,7 @@
 
 const observable = require('data/observable');
 
-const json = require('~/common/utils/json');
+const json = require('./json');
 
 const _Emitter = io.socket.emitter.Emitter;
 const _IO = io.socket.client.IO;
