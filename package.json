@@ -1,0 +1,29 @@
+{
+  "name": "nativescript-socket.io",
+  "version": "0.0.1",
+  "description": "Socket.io implementation in NativeScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naderio/nativescript-socket.io.git"
+  },
+  "keywords": [
+    "nativescript",
+    "socket.io"
+  ],
+  "author": "Nader Toukabri <contact@nader.tn>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naderio/nativescript-socket.io/issues"
+  },
+  "homepage": "https://github.com/naderio/nativescript-socket.io#readme",
+  "nativescript": {
+    "platforms": {
+      "ios": "1.5.0",
+      "android": "1.5.0"
+    }
+  }
+}
