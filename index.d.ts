@@ -1,6 +1,4 @@
 declare module "nativescript-socket.io" {
-    import { View } from "ui/core/view";
-    import { Property } from "ui/core/dependency-observable";
     import { Observable, EventData } from "data/observable";
 
     export class Socket extends Observable {
