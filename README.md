@@ -4,6 +4,11 @@ nativescript-socket.io
 ```
 var SocketIO = require('nativescript-socket.io');
 
+SocketIO.enableDebug(); // optionnal
+
+// or use your own debug function
+// SocketIO.enableDebug(myCustomDebugFunction);
+
 var opts = {
   query: 'token=' + 'SOME_JWT_TOKEN_HERE',
 };

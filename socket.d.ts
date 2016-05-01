@@ -4,6 +4,12 @@ declare module "nativescript-socket.io" {
 
     import * as json from "./json";
 
+    export default function connect (uri: any, opts: any) => Socket;
+
+    export function enableDebug(debugFb?: (...args: Array<any>) => any): void;
+
+    export function disableDebug(): any;
+
     export class Socket extends Observable {
 
         public connected: boolean;
@@ -18,7 +24,5 @@ declare module "nativescript-socket.io" {
         public disconnect(): void;
 
     }
-
-    export function connect (uri: any, opts: any) => Socket;
 
 }
