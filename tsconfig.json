@@ -1,9 +1,14 @@
 {
     "compilerOptions": {
-        "module": "commonjs", 
-        "outDir": "", 
-        "sourceMap": true, 
+        "module": "commonjs",
+        "outDir": "",
+        "sourceMap": true,
         "target": "es5"
-    }, 
-    "files": []
+    },
+    "files": [
+        "socket.android.ts",
+        "socket.ios.ts",
+        "json.android.ts",
+        "json.ios.ts"
+    ]
 }

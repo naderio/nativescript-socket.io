@@ -2,7 +2,7 @@
   "name": "nativescript-socket.io",
   "version": "0.0.1",
   "description": "Socket.io implementation in NativeScript",
-  "main": "index.js",
+  "main": "socket.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -25,5 +25,8 @@
       "ios": "1.5.0",
       "android": "1.5.0"
     }
+  },
+  "dependencies": {
+    "tns-core-modules": "^1.5.0"
   }
 }
