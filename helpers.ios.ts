@@ -1,7 +1,6 @@
 'use strict';
 
 export function serialize(data: any): any {
-  var node;
   switch (typeof data) {
     case 'string':
     case 'boolean':
@@ -9,11 +8,11 @@ export function serialize(data: any): any {
       return data;
     case 'object':
       if (Array.isArray(data)) {
-        // ...
-        data.forEach(function(v) {
-          // ...
-        });
-        return null;
+        if (Array.isArray(data)) {
+          return data.map(function(v) {
+            return serialize(v);
+          });
+        }
       }
 
       if (data instanceof Date) {
@@ -24,12 +23,12 @@ export function serialize(data: any): any {
         return null;
       }
 
-      // ...
-      Object.keys(data).forEach(function(key) {
-        var v = data[key];
-        // ...
-      });
-      return {};
+      // node = NSDictionary();
+      // Object.keys(data).forEach(function(key) {
+      //   var v = data[key];
+      //   node[key] = serialize(v);
+      // });
+      return node;
 
     default:
       return null;
