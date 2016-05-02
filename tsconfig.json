@@ -8,7 +8,7 @@
     "files": [
         "socket.android.ts",
         "socket.ios.ts",
-        "json.android.ts",
-        "json.ios.ts"
+        "helpers.android.ts",
+        "helpers.ios.ts"
     ]
 }

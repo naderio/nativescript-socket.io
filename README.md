@@ -1,6 +1,9 @@
 nativescript-socket.io
 ======================
 
+Android implementation works fine .. iOS coming soon.
+
+
 ```
 var SocketIO = require('nativescript-socket.io');
 
@@ -9,11 +12,11 @@ SocketIO.enableDebug(); // optionnal
 // or use your own debug function
 // SocketIO.enableDebug(myCustomDebugFunction);
 
-var opts = {
+var options = {
   query: 'token=' + 'SOME_JWT_TOKEN_HERE',
 };
 
-var socket = SocketIO.connect('http://somewhere/api/', opts);
+var socket = SocketIO.connect('http://somewhere/api/', options);
 
 socket.on('connect', function(){
   console.log('connect');

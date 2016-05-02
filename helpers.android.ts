@@ -4,33 +4,33 @@ const JSONObject = org.json.JSONObject;
 const JSONArray = org.json.JSONArray;
 const JSONException = org.json.JSONException;
 
-export function serialize(value: any): any {
+export function serialize(data: any): any {
   var node;
-  switch (typeof value) {
+  switch (typeof data) {
     case 'string':
     case 'boolean':
     case 'number':
-      return value;
+      return data;
     case 'object':
-      if (Array.isArray(value)) {
+      if (Array.isArray(data)) {
         node = new JSONArray();
-        value.forEach(function(v) {
+        data.forEach(function(v) {
           node.put(serialize(v));
         });
         return node;
       }
 
-      if (value instanceof Date) {
-        return value.toJSON();
+      if (data instanceof Date) {
+        return data.toJSON();
       }
 
-      if (!value) {
+      if (!data) {
         return null;
       }
 
       node = new JSONObject();
-      Object.keys(value).forEach(function(key) {
-        var v = value[key];
+      Object.keys(data).forEach(function(key) {
+        var v = data[key];
         node.put(key, serialize(v));
       });
       return node;
@@ -40,33 +40,33 @@ export function serialize(value: any): any {
   }
 }
 
-export function deserialize(javaObj: any): any {
-  if (javaObj === null || typeof javaObj !== 'object') {
-    return javaObj;
+export function deserialize(nativeData: any): any {
+  if (nativeData === null || typeof nativeData !== 'object') {
+    return nativeData;
   }
 
   var node;
-  switch (javaObj.getClass().getName()) {
+  switch (nativeData.getClass().getName()) {
     case 'java.lang.String':
-      return String(javaObj);
+      return String(nativeData);
     case 'java.lang.Boolean':
-      return Boolean(String(javaObj));
+      return Boolean(String(nativeData));
     case 'java.lang.Integer':
     case 'java.lang.Long':
     case 'java.lang.Double':
-      return Number(String(javaObj));
+      return Number(String(nativeData));
     case 'org.json.JSONArray':
       node = [];
-      for (var i = 0, l = javaObj.length(); i < l; i++) {
-        node[i] = deserialize(javaObj.get(i));
+      for (var i = 0, l = nativeData.length(); i < l; i++) {
+        node[i] = deserialize(nativeData.get(i));
       }
       break;
     case 'org.json.JSONObject':
       node = {};
-      var iterator = javaObj.keys();
+      var iterator = nativeData.keys();
       while (iterator.hasNext()) {
         var key = iterator.next();
-        node[key] = deserialize(javaObj.get(key));
+        node[key] = deserialize(nativeData.get(key));
       }
       break;
     default:
