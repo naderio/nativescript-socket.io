@@ -76,10 +76,9 @@ export class Socket {
                 if (ack) {
                     var _ack = ack;
                     // var ack = java.lang.reflect.Array.newInstance(io.socket.client.Ack.class.getField("TYPE").get(null));
-                    ack = function() {
-                        var args = Array.prototype.slice.call(arguments).map(helpers.serialize);
+                    ack = function(...args) {
                         debug('on', event, 'ack', args);
-                        _ack.call(args);
+                        _ack.call(args.map(helpers.serialize));
                     };
                     payload.push(ack);
                 }
