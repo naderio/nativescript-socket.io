@@ -1,7 +1,5 @@
 'use strict';
 
-import { Observable } from "data/observable";
-
 import * as helpers from "./helpers";
 
 export function connect(uri: any, options: any): Socket {
@@ -25,14 +23,12 @@ export function disableDebug(): void {
     debug = function() { };
 }
 
-export class Socket extends Observable {
+export class Socket {
 
     private ios: SocketIOClient;
 
     constructor(uri: string, options: Object) {
-
-        super();
-
+        
         if (options) {
             Object.keys(options).forEach(function(prop) {
                 // ...

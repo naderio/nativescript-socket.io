@@ -1,6 +1,4 @@
 declare module "nativescript-socket.io" {
-    
-    import { Observable } from "data/observable";
 
     import * as helpers from "./helpers";
 
@@ -10,7 +8,7 @@ declare module "nativescript-socket.io" {
 
     export function disableDebug(): any;
 
-    export class Socket extends Observable {
+    export class Socket {
 
         public connected: boolean;
 

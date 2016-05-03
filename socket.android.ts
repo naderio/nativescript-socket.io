@@ -1,7 +1,5 @@
 'use strict';
 
-import { Observable } from "data/observable";
-
 import * as helpers from "./helpers";
 
 const _Emitter = io.socket.emitter.Emitter;
@@ -31,7 +29,7 @@ export function disableDebug(): void {
     debug = function() { };
 }
 
-export class Socket extends Observable {
+export class Socket {
 
     private static SOCKET_CLASS = 'io.socket.client.Socket';
 
@@ -39,7 +37,6 @@ export class Socket extends Observable {
 
     constructor(uri: string, options: Object) {
 
-        super();
         let _options = new _IO.Options();
         if (options) {
             Object.keys(options).forEach(function(prop) {
