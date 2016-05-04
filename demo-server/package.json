@@ -1,0 +1,14 @@
+{
+  "name": "demo-server",
+  "version": "0.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expect.js": "^0.3.1",
+    "socket.io": "^1.4.6"
+  }
+}

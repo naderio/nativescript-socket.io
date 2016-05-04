@@ -1,8 +1,17 @@
 nativescript-socket.io
 ======================
 
+# State
+
 Android implementation works fine .. iOS coming soon.
 
+# Install
+
+```
+tns plugin add nativescript-socket.io
+```
+
+# Use
 
 ```
 var SocketIO = require('nativescript-socket.io');

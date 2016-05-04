@@ -1,3 +1,10 @@
 node_modules
 *.js
+!demo/app/*.js
+!demo-server/*.js
 *.map
+*.d.ts
+!helpers.d.ts
+!socket.d.ts
+demo/platforms
+demo/node_modules

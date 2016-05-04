@@ -1,0 +1,7 @@
+demo/
+demo-server/
+*.ts
+!helpers.d.ts
+!socket.d.ts
+*.map
+*.json
