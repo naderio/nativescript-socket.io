@@ -7,6 +7,8 @@ Android implementation works fine.
 
 iOS implementation is in active develeppement.
 
+Please check [releases and changelog](https://github.com/naderio/nativescript-socket.io/releases) for more information.  
+
 # Install
 
 ```
