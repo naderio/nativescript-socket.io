@@ -12,7 +12,12 @@ function onLoaded(args) {
 
     var SocketIO = require('nativescript-socket.io');
 
-    var socket = SocketIO.connect('http://192.168.1.111:3210');
+    SocketIO.enableDebug();
+
+    var socket = SocketIO.connect('http://192.168.1.111:3210', {
+        log: true,
+        secure: false,
+    });
 
     socket.on('error', function(error) {
         console.log('socket', 'error', error);

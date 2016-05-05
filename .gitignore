@@ -8,3 +8,4 @@ node_modules
 !socket.d.ts
 demo/platforms
 demo/node_modules
+.DS_Store

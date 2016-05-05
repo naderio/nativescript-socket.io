@@ -11,6 +11,16 @@ export function connect(uri: any, options: any): Socket {
 var debug = function(): void { }
 
 function defaultDebug(...args: Array<any>) {
+    args = args.map((value) => {
+        if (typeof value === 'object' && value) {
+            try {
+                value = JSON.stringify(value);
+            } catch(e) {
+                value = value.toString();
+            }
+        }
+        return value;
+    });
     args.unshift('nativescript-socket.io');
     console.log.apply(console, args);
 }
@@ -27,18 +37,13 @@ export class Socket {
 
     private ios: SocketIOClient;
 
-    constructor(uri: string, options: Object) {
-        
-        if (options) {
-            Object.keys(options).forEach(function(prop) {
-                // ...
-            });
-        }
+    constructor(uri: string, options?: Object = {}) {
 
-        this.ios = SocketIOClient({
-            socketURL: NSURL.URLWithString(uri),
-            // options: [.Log(true), .ForcePolling(true)]
-        });
+        debug('SocketIOClient', Object.keys(SocketIOClient), Object.keys(SocketIOClient.prototype));
+
+        this.ios = SocketIOClient.alloc();
+
+        this.ios.initWithSocketURLOptions(NSURL.URLWithString(uri), options);
 
     }
 
@@ -54,8 +59,8 @@ export class Socket {
         return this.ios && this.ios.connected();
     }
 
-
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
+        return;
         this.ios.on(event, function(...payload: Array<any> /*, ack?: Function */) {
             var ack = payload.pop();
             if (ack && typeof ack !== 'function') {
@@ -81,6 +86,8 @@ export class Socket {
     }
 
     emit(event: string, ...payload: Array<any> /*, ack?: Function */) {
+        debug('emit', event, payload);
+        return;
         var ack = payload.pop();
         if (ack && typeof ack !== 'function') {
             payload.push(ack);
