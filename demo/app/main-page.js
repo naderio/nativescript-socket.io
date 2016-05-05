@@ -17,6 +17,7 @@ function onLoaded(args) {
     var socket = SocketIO.connect('http://192.168.1.111:3210', {
         log: true,
         secure: false,
+        forceWebsockets: true,
     });
 
     socket.on('error', function(error) {

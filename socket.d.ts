@@ -15,7 +15,7 @@ declare module "nativescript-socket.io" {
         public ios: any;
         public android: io.socket.client.Socket;
 
-        public constructor(uri: string, options: Object);
+        public constructor(uri: string, options?: Object);
 
         public connect(): void;
         public disconnect(): void;

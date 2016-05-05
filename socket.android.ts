@@ -35,7 +35,7 @@ export class Socket {
 
     private android: io.socket.client.Socket;
 
-    constructor(uri: string, options: Object) {
+    constructor(uri: string, options?: Object = {}) {
 
         let _options = new _IO.Options();
         if (options) {
