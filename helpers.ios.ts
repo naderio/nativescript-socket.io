@@ -7,28 +7,29 @@ export function serialize(data: any): any {
     case 'number':
       return data;
     case 'object':
-      if (Array.isArray(data)) {
-        if (Array.isArray(data)) {
-          return data.map(function(v) {
-            return serialize(v);
-          });
-        }
-      }
+      return data;
+      // if (Array.isArray(data)) {
+      //   if (Array.isArray(data)) {
+      //     return data.map(function(v) {
+      //       return serialize(v);
+      //     });
+      //   }
+      // }
 
-      if (data instanceof Date) {
-        return data.toJSON();
-      }
+      // if (data instanceof Date) {
+      //   return data.toJSON();
+      // }
 
-      if (!data) {
-        return null;
-      }
+      // if (!data) {
+      //   return null;
+      // }
 
-      // node = NSDictionary();
-      // Object.keys(data).forEach(function(key) {
-      //   var v = data[key];
-      //   node[key] = serialize(v);
-      // });
-      return node;
+      // // node = new NSDictionary();
+      // // Object.keys(data).forEach(function(key) {
+      // //   var v = data[key];
+      // //   node[key] = serialize(v);
+      // // });
+      // return node;
 
     default:
       return null;

@@ -82,30 +82,33 @@ make sure to put your IP address in `./demo/app/main-page.js` (`var socket = Soc
 expect the following on app:
 
 ```
-JS: socket connect
-JS: socket emit hi
-JS: socket on hi
-JS: socket emit ack
-JS: socket on ack
-JS: socket emit getAckDate
-JS: socket emit getAckDate ack 2016-05-04T23:17:36.170Z
-JS: socket emit getDate
-JS: socket on takeDate 2016-05-04T23:17:37.140Z
-JS: socket emit getDateObj
-JS: socket on takeDateObj {"date":"2016-05-04T23:17:38.138Z"}
-JS: socket emit getUtf8
-JS: socket on takeUtf8 てすと
-JS: socket on takeUtf8 Я Б Г Д Ж Й
-JS: socket on takeUtf8 Ä ä Ü ü ß
-JS: socket on takeUtf8 utf8 — string
-JS: socket on takeUtf8 utf8 — string
+JS: nativescript-socket.io emit hi [] 
+JS: nativescript-socket.io on hi [] 
+JS: nativescript-socket.io emit ack [] 
+JS: nativescript-socket.io on ack [] ack
+JS: nativescript-socket.io on ack ack [5,{"test":true}]
+JS: nativescript-socket.io on got it [] 
+JS: nativescript-socket.io emit getAckDate ["whatever"] ack
+JS: nativescript-socket.io emit getAckDate ack ["2016-05-08T22:22:58.618Z"]
+JS: nativescript-socket.io emit getDate [] 
+JS: nativescript-socket.io on takeDate ["2016-05-08T22:22:59.614Z"] 
+JS: nativescript-socket.io emit getDateObj [] 
+JS: nativescript-socket.io on takeDateObj [{"date":"2016-05-08T22:23:00.615Z"}] 
+JS: nativescript-socket.io emit getUtf8 [] 
+JS: nativescript-socket.io on takeUtf8 ["てすと"] 
+JS: nativescript-socket.io on takeUtf8 ["Я Б Г Д Ж Й"] 
+JS: nativescript-socket.io on takeUtf8 ["Ä ä Ü ü ß"] 
+JS: nativescript-socket.io on takeUtf8 ["utf8 — string"] 
+JS: nativescript-socket.io on takeUtf8 ["utf8 — string"]
 ```
 
 and the following on server:
 
 ```
+socket connect
 socket on hi
 socket on ack
+socket on ack ack
 socket on getAckDate whatever
 socket on getDate
 socket on getDateObj

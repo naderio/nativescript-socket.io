@@ -33,6 +33,7 @@ server.on('connection', function(socket) {
     socket.on('ack', function() {
         console.log('socket', 'on', 'ack');
         socket.emit('ack', function(a, b) {
+            console.log('socket', 'on', 'ack', 'ack');
             if (a === 5 && b.test) {
                 socket.emit('got it');
             }
