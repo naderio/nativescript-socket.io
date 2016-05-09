@@ -41,8 +41,6 @@ export class Socket {
 
     constructor(uri: string, options: Object = {}) {
 
-        debug('SocketIOClient', Object.keys(SocketIOClient), Object.keys(SocketIOClient.prototype));
-
         this.ios = SocketIOClient.alloc();
 
         this.ios.initWithSocketURLOptions(NSURL.URLWithString(uri), options);
@@ -79,7 +77,8 @@ export class Socket {
             }
             callback.apply(null, payload);
         };
-        let listenerId = this.ios.on(event, listener);
+        return this;
+        let listenerId = this.ios.onCallback(event, listener);
         this._listenerMap.set(callback, listenerId);
         return this;
     }
@@ -89,7 +88,7 @@ export class Socket {
         if (listener) {
             listener = this._listenerMap.get(listener);
             if (listener) {
-                this.ios.off(event, listener);
+                this.ios.offWithId(listener);
                 this._listenerMap.delete(listener);
             }
         } else {
@@ -112,13 +111,13 @@ export class Socket {
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            // this.ios.emitWithAck(event, ...payload)(0, _ack);
-            this.ios.emitWithAck(event, ...payload)({
+            // this.ios.emitWithAckWithItems(event, ...payload)(0, _ack);
+            this.ios.emitWithAckWithItems(event, payload)({
                 timeoutAfter: 0,
                 callback: _ack
             });
         } else {
-            this.ios.emit(event, ...payload);
+            this.ios.emitWithItems(event, payload);
         }
     }
 
