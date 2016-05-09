@@ -25,7 +25,7 @@ server.on('connection', function(socket) {
 
     // simple test
     socket.on('hi', function() {
-        console.log('socket', 'on', 'hi');
+        console.log('socket', 'on', 'hi', Array.prototype.slice.call(arguments));
         socket.emit('hi');
     });
 
