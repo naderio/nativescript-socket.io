@@ -61,9 +61,11 @@ function onLoaded(args) {
         setTimeout(function() {
             log('socket', 'emit', 'hi');
             socket.emit('hi');
-            socket.emit('hi', -1);
             socket.emit('hi', false);
             socket.emit('hi', true);
+            socket.emit('hi', -1);
+            socket.emit('hi', 0);
+            socket.emit('hi', 1);
             socket.emit('hi', '');
             socket.emit('hi', '...');
             socket.emit('hi', {
@@ -80,6 +82,30 @@ function onLoaded(args) {
                     b: 2,
                 }, ['a', 'b', 'c'], [{ a: 1 }, new Date(), true, 15, '..']
             );
+            socket.emit('hi', [-1,
+                false,
+                true,
+                '',
+                '...', {
+                    a: 1,
+                    b: 2,
+                },
+                ['a', 'b', 'c'],
+                [{ a: 1 }, new Date(), true, 15, '..']
+            ]);
+            socket.emit('hi', {
+                '-1': 1,
+                false: false,
+                true: true,
+                'empty string': '',
+                'string': '...',
+                'object': {
+                    a: 1,
+                    b: 2,
+                },
+                'array of strings': ['a', 'b', 'c'],
+                'array of mixed': [{ a: 1 }, new Date(), true, 15, '..']
+            });
         }, 1000);
 
 

@@ -50,7 +50,7 @@ export function deserialize(nativeData: any): any {
     case 'java.lang.String':
       return String(nativeData);
     case 'java.lang.Boolean':
-      return Boolean(String(nativeData));
+      return String(nativeData) === 'true';
     case 'java.lang.Integer':
     case 'java.lang.Long':
     case 'java.lang.Double':
