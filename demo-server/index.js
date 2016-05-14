@@ -25,8 +25,11 @@ server.on('connection', function(socket) {
 
     // simple test
     socket.on('hi', function() {
-        console.log('socket', 'on', 'hi', Array.prototype.slice.call(arguments));
-        socket.emit('hi');
+        args = Array.prototype.slice.call(arguments);
+        console.log('socket', 'on', 'hi', args);
+        // socket.emit('hi');
+        args.unshift('hi');
+        socket.emit.apply(socket, args);
     });
 
     // ack tests

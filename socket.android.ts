@@ -115,7 +115,9 @@ export class Socket {
 
     emit(event: string, ...payload: Array<any> /*, ack?: Function */) {
         let ack = payload.pop();
-        if (ack && typeof ack !== 'function') {
+        if (typeof ack === 'undefined') {
+            ack = null;
+        } else if (typeof ack !== 'function') {
             payload.push(ack);
             ack = null;
         }

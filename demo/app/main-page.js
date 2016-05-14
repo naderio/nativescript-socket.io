@@ -63,6 +63,7 @@ function onLoaded(args) {
             socket.emit('hi');
             socket.emit('hi', -1);
             socket.emit('hi', false);
+            socket.emit('hi', true);
             socket.emit('hi', '');
             socket.emit('hi', '...');
             socket.emit('hi', {
@@ -72,6 +73,7 @@ function onLoaded(args) {
             socket.emit('hi', ['a', 'b', 'c']);
             socket.emit('hi', -1,
                 false,
+                true,
                 '',
                 '...', {
                     a: 1,
