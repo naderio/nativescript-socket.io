@@ -75,7 +75,9 @@ export class Socket {
         let listener = function(args) {
             let payload = Array.prototype.slice.call(args);
             let ack = payload.pop();
-            if (ack && !(ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && ack.call)) {
+            if (typeof ack === 'undefined') {
+                ack = null;
+            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && ack.call)) {
                 payload.push(ack);
                 ack = null;
             }

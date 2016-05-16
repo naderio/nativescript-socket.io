@@ -162,22 +162,22 @@ function onLoaded(args) {
             socket.emit('getUtf8');
         }, 6000);
 
-        setTimeout(function() {
-            setInterval(function() {
-                log('socket', 'emit', 'hi');
-                socket.emit('hi');
-            }, 2000);
-        }, 8000);
+        // setTimeout(function() {
+        //     setInterval(function() {
+        //         log('socket', 'emit', 'hi');
+        //         socket.emit('hi');
+        //     }, 2000);
+        // }, 8000);
 
-        setTimeout(function() {
-            log('socket', 'off', 'hi');
-            socket.off('hi', hiListener);
-        }, 15000);
+        // setTimeout(function() {
+        //     log('socket', 'off', 'hi');
+        //     socket.off('hi', hiListener);
+        // }, 15000);
 
-        setTimeout(function() {
-            log('socket', 'off', 'hi');
-            socket.off('hi');
-        }, 20000);
+        // setTimeout(function() {
+        //     log('socket', 'off', 'hi');
+        //     socket.off('hi');
+        // }, 20000);
 
     });
 

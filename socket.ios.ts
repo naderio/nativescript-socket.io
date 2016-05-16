@@ -62,7 +62,9 @@ export class Socket {
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
         let listener = function(data: Array<any>, ack: any) {
             let payload = Array.prototype.slice.call(data);
-            if (ack && !( /* ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && */ ack.width)) {
+            if (typeof ack === 'undefined') {
+                ack = null;
+            } else if (typeof ack === 'object' && ack && !( /* ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && */ ack.width)) {
                 ack = null;
             }
             payload = payload.map(helpers.deserialize);
