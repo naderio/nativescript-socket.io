@@ -9,7 +9,7 @@ android {
 
 dependencies {
 
-    compile ('io.socket:socket.io-client:0.7.0') {
+    compile ('io.socket:socket.io-client:0.7.*') {
       exclude group: 'org.json', module: 'json'
     }
 
