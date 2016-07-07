@@ -41,9 +41,7 @@ export class Socket {
 
     constructor(uri: string, options: Object = {}) {
 
-        this.ios = SocketIOClient.alloc();
-
-        this.ios.initWithSocketURLOptions(NSURL.URLWithString(uri), options);
+        this.ios = SocketIOClient.alloc().initWithSocketURLOptions(NSURL.URLWithString(uri), options);
 
     }
 
