@@ -3,11 +3,11 @@ nativescript-socket.io
 
 # State
 
-Android implementation works fine.
+Android implementation is stable and almost complete.
 
-iOS implementation is in active develeppement.
+iOS implementation is in active development.
 
-Please check [releases and changelog](https://github.com/naderio/nativescript-socket.io/releases) for more information.  
+Please check [releases and changelog](https://github.com/naderio/nativescript-socket.io/releases) and [roadmap](https://github.com/naderio/nativescript-socket.io/issues/3) for more information.  
 
 # Install
 
@@ -15,7 +15,7 @@ Please check [releases and changelog](https://github.com/naderio/nativescript-so
 tns plugin add nativescript-socket.io
 ```
 
-# Use
+# Usage
 
 ```
 var SocketIO = require('nativescript-socket.io');
@@ -61,6 +61,15 @@ socket.emit('hello-ack', {
 })
 
 ```
+
+## Usage with TypeScript
+
+import using either of
+
+* `import SocketIO = require("nativescript-socket.io ")`
+* `import * as SocketIO from "nativescript-socket.io"`
+
+
 # Demo
 
 first start the socket.io demo server
