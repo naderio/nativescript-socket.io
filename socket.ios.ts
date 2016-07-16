@@ -1,5 +1,8 @@
 'use strict';
 
+declare var SocketIOClient;
+declare var NSURL;
+
 import * as helpers from "./helpers";
 
 export function connect(uri: any, options?: any): Socket {

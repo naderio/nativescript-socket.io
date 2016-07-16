@@ -1,5 +1,7 @@
 'use strict';
 
+declare var org;
+
 const JSONObject = org.json.JSONObject;
 const JSONArray = org.json.JSONArray;
 const JSONException = org.json.JSONException;

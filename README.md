@@ -75,7 +75,7 @@ import using either of
 first start the socket.io demo server
 
 ```
-cd ./demo-server
+cd ./demo/server
 npm start
 ```
 

@@ -1,7 +1,7 @@
 node_modules
 *.js
 !demo/app/*.js
-!demo-server/*.js
+!demo/server/*.js
 *.map
 *.d.ts
 !helpers.d.ts
@@ -9,3 +9,4 @@ node_modules
 demo/platforms
 demo/node_modules
 .DS_Store
+*.log

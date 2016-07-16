@@ -1,5 +1,7 @@
 'use strict';
 
+declare var io;
+
 import * as helpers from "./helpers";
 
 const _Emitter = io.socket.emitter.Emitter;
