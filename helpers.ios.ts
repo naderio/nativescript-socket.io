@@ -8,14 +8,6 @@ export function serialize(data: any): any {
       return data;
     case 'object':
 
-      // if (Array.isArray(data)) {
-      //   if (Array.isArray(data)) {
-      //     return data.map(function(v) {
-      //       return serialize(v);
-      //     });
-      //   }
-      // }
-
       if (data instanceof Date) {
         return data.toJSON();
       }
@@ -24,14 +16,19 @@ export function serialize(data: any): any {
         return null;
       }
 
-      return data;
 
-    // // node = new NSDictionary();
-    // // Object.keys(data).forEach(function(key) {
-    // //   let v = data[key];
-    // //   node[key] = serialize(v);
-    // // });
-    // return node;
+      if (Array.isArray(data)) {
+        return NSArray.arrayWithArray(data.map(function(v) {
+          return serialize(v);
+        }));
+      }
+
+      let node = {};
+      Object.keys(data).forEach(function(key) {
+        let value = data[key];
+        node[key] = serialize(value);
+      });
+      return NSDictionary.dictionaryWithDictionary(node);
 
     default:
       return null;
