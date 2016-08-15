@@ -80,7 +80,6 @@ export class Socket {
             }
             callback.apply(null, payload);
         };
-        return this;
         let listenerId = this.ios.onCallback(event, listener);
         this._listenerMap.set(callback, listenerId);
         return this;
@@ -89,9 +88,9 @@ export class Socket {
     off(event: string, listener?: Function) {
         debug('off', event, listener);
         if (listener) {
-            listener = this._listenerMap.get(listener);
-            if (listener) {
-                this.ios.offWithId(listener);
+            let listenerId = this._listenerMap.get(listener);
+            if (listenerId) {
+                this.ios.offWithId(listenerId);
                 this._listenerMap.delete(listener);
             }
         } else {

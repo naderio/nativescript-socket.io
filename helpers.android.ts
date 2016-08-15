@@ -7,7 +7,7 @@ const JSONArray = org.json.JSONArray;
 const JSONException = org.json.JSONException;
 
 export function serialize(data: any): any {
-  var node;
+  let node;
   switch (typeof data) {
     case 'string':
     case 'boolean':
@@ -32,7 +32,7 @@ export function serialize(data: any): any {
 
       node = new JSONObject();
       Object.keys(data).forEach(function(key) {
-        var v = data[key];
+        let v = data[key];
         node.put(key, serialize(v));
       });
       return node;
@@ -47,7 +47,6 @@ export function deserialize(nativeData: any): any {
     return nativeData;
   }
 
-  var node;
   switch (nativeData.getClass().getName()) {
     case 'java.lang.String':
       return String(nativeData);
@@ -58,21 +57,20 @@ export function deserialize(nativeData: any): any {
     case 'java.lang.Double':
       return Number(String(nativeData));
     case 'org.json.JSONArray':
-      node = [];
-      for (var i = 0, l = nativeData.length(); i < l; i++) {
-        node[i] = deserialize(nativeData.get(i));
+      let array = [];
+      for (let i = 0, l = nativeData.length(); i < l; i++) {
+        array[i] = deserialize(nativeData.get(i));
       }
-      break;
+      return array;
     case 'org.json.JSONObject':
-      node = {};
-      var iterator = nativeData.keys();
+      let dict = {};
+      let iterator = nativeData.keys();
       while (iterator.hasNext()) {
-        var key = iterator.next();
-        node[key] = deserialize(nativeData.get(key));
+        let key = iterator.next();
+        dict[key] = deserialize(nativeData.get(key));
       }
-      break;
+      return dict;
     default:
-      node = null;
+      return null;
   }
-  return node;
 }

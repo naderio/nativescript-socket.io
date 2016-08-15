@@ -9,12 +9,12 @@
       "version": "2.1.1"
     },
     "tns-ios": {
-      "version": "2.1.1"
+      "version": "2.2.0"
     }
   },
   "dependencies": {
     "nativescript-socket.io": "file:..",
-    "tns-core-modules": "2.0.0"
+    "tns-core-modules": "^2.2.0"
   },
   "devDependencies": {
     "babel-traverse": "6.8.0",
