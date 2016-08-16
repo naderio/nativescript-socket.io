@@ -65,7 +65,7 @@ export class Socket {
             let payload = Array.prototype.slice.call(data);
             if (typeof ack === 'undefined') {
                 ack = null;
-            } else if (typeof ack === 'object' && ack && !( /* ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && */ ack.width)) {
+            } else if (typeof ack === 'object' && ack && !(ack instanceof SocketAckEmitter)) {
                 ack = null;
             }
             payload = payload.map(helpers.deserialize);
@@ -74,7 +74,7 @@ export class Socket {
                 let _ack = function(...args) {
                     debug('on', event, 'ack', args);
                     args = args.map(helpers.serialize)
-                    ack.width(...args);
+                    ack.with(args);
                 };
                 payload.push(_ack);
             }
