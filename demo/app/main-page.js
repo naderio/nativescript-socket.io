@@ -38,7 +38,7 @@ function onLoaded(args) {
     SocketIO.enableDebug();
 
     var socket = SocketIO.connect('http://192.168.1.111:3210', {
-        log: true,
+        // log: true,
         secure: false,
         forceWebsockets: true,
     });
@@ -80,7 +80,7 @@ function onLoaded(args) {
                 '...', {
                     a: 1,
                     b: 2,
-                }, ['a', 'b', 'c'], [{ a: 1 }, new Date(), true, 15, '..']
+                }, ['a', 'b', 'c'], [{ a: 1 }, new Date('2016-01-01'), true, 15, '..']
             );
             socket.emit('hi', [-1,
                 false,
@@ -91,7 +91,7 @@ function onLoaded(args) {
                     b: 2,
                 },
                 ['a', 'b', 'c'],
-                [{ a: 1 }, new Date(), true, 15, '..']
+                [{ a: 1 }, new Date('2016-01-01'), true, 15, '..']
             ]);
             socket.emit('hi', {
                 '-1': 1,
@@ -104,7 +104,7 @@ function onLoaded(args) {
                     b: 2,
                 },
                 'array of strings': ['a', 'b', 'c'],
-                'array of mixed': [{ a: 1 }, new Date(), true, 15, '..']
+                'array of mixed': [{ a: 1 }, new Date('2016-01-01'), true, 15, '..']
             });
         }, 1000);
 
@@ -162,22 +162,22 @@ function onLoaded(args) {
             socket.emit('getUtf8');
         }, 6000);
 
-        // setTimeout(function() {
-        //     setInterval(function() {
-        //         log('socket', 'emit', 'hi');
-        //         socket.emit('hi');
-        //     }, 2000);
-        // }, 8000);
+        setTimeout(function() {
+            setInterval(function() {
+                log('socket', 'emit', 'hi');
+                socket.emit('hi');
+            }, 2000);
+        }, 8000);
 
-        // setTimeout(function() {
-        //     log('socket', 'off', 'hi');
-        //     socket.off('hi', hiListener);
-        // }, 15000);
+        setTimeout(function() {
+            log('socket', 'off', 'hi');
+            socket.off('hi', hiListener);
+        }, 15000);
 
-        // setTimeout(function() {
-        //     log('socket', 'off', 'hi');
-        //     socket.off('hi');
-        // }, 20000);
+        setTimeout(function() {
+            log('socket', 'off', 'hi');
+            socket.off('hi');
+        }, 20000);
 
     });
 

@@ -14,13 +14,6 @@ export function serialize(data: any): any {
     case 'number':
       return data;
     case 'object':
-      if (Array.isArray(data)) {
-        node = new JSONArray();
-        data.forEach(function(v) {
-          node.put(serialize(v));
-        });
-        return node;
-      }
 
       if (data instanceof Date) {
         return data.toJSON();
@@ -28,6 +21,14 @@ export function serialize(data: any): any {
 
       if (!data) {
         return null;
+      }
+
+      if (Array.isArray(data)) {
+        node = new JSONArray();
+        data.forEach(function(v) {
+          node.put(serialize(v));
+        });
+        return node;
       }
 
       node = new JSONObject();

@@ -16,11 +16,8 @@ export function serialize(data: any): any {
         return null;
       }
 
-
       if (Array.isArray(data)) {
-        return NSArray.arrayWithArray(data.map(function(v) {
-          return serialize(v);
-        }));
+        return NSArray.arrayWithArray(data.map(serialize));
       }
 
       let node = {};

@@ -10,3 +10,4 @@ demo/platforms
 demo/node_modules
 .DS_Store
 *.log
+lib
