@@ -26,7 +26,7 @@ server.on('connection', function(socket) {
     // simple test
     socket.on('hi', function() {
         args = Array.prototype.slice.call(arguments);
-        console.log('socket', 'on', 'hi', args);
+        console.log('socket', 'on', 'hi', JSON.stringify(Array.from(arguments), null, 2));
         // socket.emit('hi');
         args.unshift('hi');
         socket.emit.apply(socket, args);
@@ -34,9 +34,9 @@ server.on('connection', function(socket) {
 
     // ack tests
     socket.on('ack', function() {
-        console.log('socket', 'on', 'ack');
+        console.log('socket', 'on', 'ack', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('ack', function(a, b) {
-            console.log('socket', 'on', 'ack', 'ack');
+            console.log('socket', 'on', 'ack', 'ack', JSON.stringify(Array.from(arguments), null, 2));
             if (a === 5 && b.test) {
                 socket.emit('got it');
             }
@@ -44,22 +44,22 @@ server.on('connection', function(socket) {
     });
 
     socket.on('getAckDate', function(data, cb) {
-        console.log('socket', 'on', 'getAckDate', data);
-        cb(new Date());
+        console.log('socket', 'on', 'getAckDate', JSON.stringify(Array.from(arguments), null, 2));
+        cb(new Date('2017-01-01'));
     });
 
     socket.on('getDate', function() {
-        console.log('socket', 'on', 'getDate');
-        socket.emit('takeDate', new Date());
+        console.log('socket', 'on', 'getDate', JSON.stringify(Array.from(arguments), null, 2));
+        socket.emit('takeDate', new Date('2017-01-01'));
     });
 
     socket.on('getDateObj', function() {
-        console.log('socket', 'on', 'getDateObj');
-        socket.emit('takeDateObj', { date: new Date() });
+        console.log('socket', 'on', 'getDateObj', JSON.stringify(Array.from(arguments), null, 2));
+        socket.emit('takeDateObj', { date: new Date('2017-01-01') });
     });
 
     socket.on('getUtf8', function() {
-        console.log('socket', 'on', 'getUtf8');
+        console.log('socket', 'on', 'getUtf8', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('takeUtf8', 'てすと');
         socket.emit('takeUtf8', 'Я Б Г Д Ж Й');
         socket.emit('takeUtf8', 'Ä ä Ü ü ß');

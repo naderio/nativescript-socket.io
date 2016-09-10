@@ -14,13 +14,20 @@
   },
   "dependencies": {
     "nativescript-socket.io": "file:..",
+    "nativescript-unit-test-runner": "^0.3.3",
     "tns-core-modules": "^2.2.0"
   },
   "devDependencies": {
     "babel-traverse": "6.8.0",
     "babel-types": "6.8.1",
     "babylon": "6.8.0",
+    "chai": "^3.5.0",
     "filewalker": "0.1.2",
-    "lazy": "1.0.11"
+    "karma": "^1.2.0",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^1.1.1",
+    "karma-nativescript-launcher": "^0.4.0",
+    "lazy": "1.0.11",
+    "mocha": "^3.0.2"
   }
 }

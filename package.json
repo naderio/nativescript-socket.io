@@ -27,6 +27,12 @@
   },
   "homepage": "https://github.com/naderio/nativescript-socket.io#readme",
   "devDependencies": {
+    "chai": "^3.5.0",
+    "karma": "^1.2.0",
+    "karma-chai": "^0.1.0",
+    "karma-mocha": "^1.1.1",
+    "karma-nativescript-launcher": "^0.4.0",
+    "mocha": "^3.0.2",
     "typescript": "^1.8.10"
   }
 }
