@@ -30,7 +30,7 @@ function onLoaded(args) {
     // });
 
 
-    SocketIO.enableDebug(debug);
+    SocketIO.enableDebug(require('./debug')('socket.io'));
 
     var socket = SocketIO.connect('http://192.168.1.111:3210', {
         // log: true,
@@ -38,19 +38,19 @@ function onLoaded(args) {
         forceWebsockets: true,
     });
     socket.on('error', function(error) {
-        debug('socket', 'error', error);
+        debug('error', error);
     });
 
     socket.on('connect', function() {
-        debug('socket', 'connect');
+        debug('connect');
 
         function hiListener(data) {
-            debug('socket', 'on', 'hi');
+            debug('on', 'hi');
         }
         socket.on('hi', hiListener);
 
         setTimeout(function() {
-            debug('socket', 'emit', 'hi');
+            debug('emit', 'hi');
             socket.emit('hi');
             socket.emit('hi', false);
             socket.emit('hi', true);
@@ -101,72 +101,72 @@ function onLoaded(args) {
 
 
         socket.on('ack', function(data) {
-            debug('socket', 'on', 'ack');
+            debug('on', 'ack');
             data(5, {
                 test: true,
             });
         });
 
         socket.on('got it', function(data) {
-            debug('socket', 'on', 'got it', JSON.stringify(data));
+            debug('on', 'got it', JSON.stringify(data));
         });
 
         setTimeout(function() {
-            debug('socket', 'emit', 'ack');
+            debug('emit', 'ack');
             socket.emit('ack');
         }, 2000);
 
         setTimeout(function() {
-            debug('socket', 'emit', 'getAckDate');
+            debug('emit', 'getAckDate');
             socket.emit('getAckDate', 'whatever', function(data) {
-                debug('socket', 'emit', 'getAckDate', 'ack', JSON.stringify(data));
+                debug('emit', 'getAckDate', 'ack', JSON.stringify(data));
             });
         }, 3000);
 
 
         socket.on('takeDate', function(data) {
-            debug('socket', 'on', 'takeDate', JSON.stringify(data));
+            debug('on', 'takeDate', JSON.stringify(data));
         });
 
         setTimeout(function() {
-            debug('socket', 'emit', 'getDate');
+            debug('emit', 'getDate');
             socket.emit('getDate');
         }, 4000);
 
 
         socket.on('takeDateObj', function(data) {
-            debug('socket', 'on', 'takeDateObj', JSON.stringify(data));
+            debug('on', 'takeDateObj', JSON.stringify(data));
         });
 
         setTimeout(function() {
-            debug('socket', 'emit', 'getDateObj');
+            debug('emit', 'getDateObj');
             socket.emit('getDateObj');
         }, 5000);
 
 
         socket.on('takeUtf8', function(data) {
-            debug('socket', 'on', 'takeUtf8', JSON.stringify(data));
+            debug('on', 'takeUtf8', JSON.stringify(data));
         });
 
         setTimeout(function() {
-            debug('socket', 'emit', 'getUtf8');
+            debug('emit', 'getUtf8');
             socket.emit('getUtf8');
         }, 6000);
 
         setTimeout(function() {
             setInterval(function() {
-                debug('socket', 'emit', 'hi');
+                debug('emit', 'hi');
                 socket.emit('hi');
             }, 2000);
         }, 8000);
 
         setTimeout(function() {
-            debug('socket', 'off', 'hi');
+            debug('off', 'hi');
             socket.off('hi', hiListener);
         }, 15000);
 
         setTimeout(function() {
-            debug('socket', 'off', 'hi');
+            debug('off', 'hi');
             socket.off('hi');
         }, 20000);
 
