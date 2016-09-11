@@ -2,6 +2,7 @@
 
 declare var SocketIOClient;
 declare var NSURL;
+declare var SocketIOClientConfiguration;
 
 import * as helpers from "./helpers";
 
@@ -44,7 +45,13 @@ export class Socket {
 
     constructor(uri: string, options: Object = {}) {
 
-        this.ios = SocketIOClient.alloc().initWithSocketURLOptions(NSURL.URLWithString(uri), options);
+        // let config = SocketIOClientConfiguration.alloc().init();
+
+        let config = [];
+        
+        // TODO: convert options to config
+
+        this.ios = SocketIOClient.alloc().initWithSocketURLConfig(NSURL.URLWithString(uri), config);
 
     }
 
