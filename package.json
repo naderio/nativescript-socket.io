@@ -33,6 +33,7 @@
     "karma-mocha": "^1.1.1",
     "karma-nativescript-launcher": "^0.4.0",
     "mocha": "^3.0.2",
+    "tns-core-modules": "*",
     "typescript": "^1.8.10"
   }
 }

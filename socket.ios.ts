@@ -1,20 +1,15 @@
 'use strict';
 
-declare var SocketIOClient;
-declare var NSURL;
-declare var SocketIOClientConfiguration;
+declare var SocketIOClient: any;
+declare var NSURL: any;
+declare var SocketIOClientConfiguration: any;
 
 import * as helpers from "./helpers";
 
-export function connect(uri: any, options?: any): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
-}
 
-let debug = function(...args: Array<any>): void { }
+const debugNull = function(...args: Array<any>): void { };
 
-function defaultDebug(...args: Array<any>) {
+function debugDefault(...args: Array<any>) {
     args = args.map((value) => {
         if (typeof value === 'object' && value) {
             try {
@@ -29,12 +24,21 @@ function defaultDebug(...args: Array<any>) {
     console.log.apply(console, args);
 }
 
-export function enableDebug(debugFn: ((...args: Array<any>) => any) = defaultDebug): void {
+let debug = debugNull;
+
+export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
     debug = debugFn;
 }
 
 export function disableDebug(): void {
-    debug = function() { };
+    debug = debugNull;
+}
+
+
+export function connect(uri: any, options?: any): Socket {
+    let socket = new Socket(uri, options || {});
+    socket.connect();
+    return socket;
 }
 
 export class Socket {
