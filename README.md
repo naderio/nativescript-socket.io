@@ -66,7 +66,7 @@ socket.emit('hello-ack', {
 
 import using either of
 
-* `import SocketIO = require("nativescript-socket.io ")`
+* `import SocketIO = require("nativescript-socket.io")`
 * `import * as SocketIO from "nativescript-socket.io"`
 
 
@@ -79,7 +79,7 @@ cd ./demo/server
 npm start
 ```
 
-the build and run the app
+then build and run the app
 
 ```
 cd ./demo

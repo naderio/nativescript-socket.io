@@ -5,8 +5,8 @@
   "main": "socket.js",
   "nativescript": {
     "platforms": {
-      "ios": "1.5.0",
-      "android": "1.5.0"
+      "ios": "2.0.0",
+      "android": "2.0.0"
     }
   },
   "scripts": {
@@ -21,7 +21,7 @@
     "socket.io"
   ],
   "author": "Nader Toukabri <contact@nader.tn>",
-  "license": "ISC",
+  "license": "Unlicense",
   "bugs": {
     "url": "https://github.com/naderio/nativescript-socket.io/issues"
   },
