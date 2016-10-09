@@ -4,6 +4,8 @@ var io = require('socket.io');
 var server = io(process.env.ZUUL_PORT || 3210, { pingInterval: 2000 });
 var expect = require('expect.js');
 
+var debug = require('./debug')('socket.io');
+
 server.of('/foo').on('connection', function() {
     // register namespace
 });
@@ -21,12 +23,12 @@ server.of('/asd').on('connection', function() {
 });
 
 server.on('connection', function(socket) {
-    console.log('socket', 'connect');
+    debug('connect');
 
     // simple test
     socket.on('hi', function() {
         args = Array.prototype.slice.call(arguments);
-        console.log('socket', 'on', 'hi', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'hi', JSON.stringify(Array.from(arguments), null, 2));
         // socket.emit('hi');
         args.unshift('hi');
         socket.emit.apply(socket, args);
@@ -34,9 +36,9 @@ server.on('connection', function(socket) {
 
     // ack tests
     socket.on('ack', function() {
-        console.log('socket', 'on', 'ack', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'ack', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('ack', function(a, b) {
-            console.log('socket', 'on', 'ack', 'ack', JSON.stringify(Array.from(arguments), null, 2));
+            debug('on', 'ack', 'ack', JSON.stringify(Array.from(arguments), null, 2));
             if (a === 5 && b.test) {
                 socket.emit('got it');
             }
@@ -44,22 +46,22 @@ server.on('connection', function(socket) {
     });
 
     socket.on('getAckDate', function(data, cb) {
-        console.log('socket', 'on', 'getAckDate', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'getAckDate', JSON.stringify(Array.from(arguments), null, 2));
         cb(new Date('2017-01-01'));
     });
 
     socket.on('getDate', function() {
-        console.log('socket', 'on', 'getDate', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'getDate', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('takeDate', new Date('2017-01-01'));
     });
 
     socket.on('getDateObj', function() {
-        console.log('socket', 'on', 'getDateObj', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'getDateObj', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('takeDateObj', { date: new Date('2017-01-01') });
     });
 
     socket.on('getUtf8', function() {
-        console.log('socket', 'on', 'getUtf8', JSON.stringify(Array.from(arguments), null, 2));
+        debug('on', 'getUtf8', JSON.stringify(Array.from(arguments), null, 2));
         socket.emit('takeUtf8', 'てすと');
         socket.emit('takeUtf8', 'Я Б Г Д Ж Й');
         socket.emit('takeUtf8', 'Ä ä Ü ü ß');

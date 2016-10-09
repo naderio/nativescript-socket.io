@@ -1,6 +1,6 @@
 'use strict';
 
-declare var io;
+declare var io: any;
 
 import * as helpers from "./helpers";
 
@@ -10,15 +10,9 @@ const _Socket = io.socket.client.Socket;
 const _Ack = io.socket.client.Ack;
 
 
-export function connect(uri: any, options?: any): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
-}
+const debugNull = function(...args: Array<any>): void { };
 
-let debug = function(...args: Array<any>): void { }
-
-function defaultDebug(...args: Array<any>) {
+function debugDefault(...args: Array<any>) {
     args = args.map((value) => {
         if (typeof value === 'object' && value) {
             try {
@@ -33,13 +27,23 @@ function defaultDebug(...args: Array<any>) {
     console.log.apply(console, args);
 }
 
-export function enableDebug(debugFn: ((...args: Array<any>) => any) = defaultDebug): void {
+let debug = debugNull;
+
+export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
     debug = debugFn;
 }
 
 export function disableDebug(): void {
-    debug = function() { };
+    debug = debugNull;
 }
+
+
+export function connect(uri: any, options?: any): Socket {
+    let socket = new Socket(uri, options || {});
+    socket.connect();
+    return socket;
+}
+
 
 export class Socket {
 

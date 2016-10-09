@@ -4,4 +4,4 @@ demo/
 !socket.d.ts
 *.map
 *.json
-$.log
+*.log
