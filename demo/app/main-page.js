@@ -10,6 +10,7 @@ exports.onNavigatingTo = onNavigatingTo;
 var debug = require('./debug')(__filename);
 
 var SocketIO = require('nativescript-socket.io');
+// var SocketIO = require('./dev');
 
 function onLoaded(args) {
     var page = args.object;
@@ -20,15 +21,13 @@ function onLoaded(args) {
     // debug('SocketIOClientOption', typeof SocketIOClientOption);
     // debug('SocketIOClientOptions', typeof SocketIOClientOptions);
 
-
     // Object.keys(SocketIOClient.prototype).forEach(function(method) {
     //     try {
     //         debug('SocketIOClient', method, typeof SocketIOClient.prototype[method], typeof SocketIOClient.prototype[method] === 'function' ? SocketIOClient.prototype[method].length : '');
     //     } catch(e){
-    //         debug('SocketIOClient', method, typeof SocketIOClient.prototype[method]);
+    //         debug('SocketIOClient', method, '?');
     //     }
     // });
-
 
     SocketIO.enableDebug(require('./debug')('socket.io'));
 

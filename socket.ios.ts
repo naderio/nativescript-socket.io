@@ -1,8 +1,11 @@
 'use strict';
 
-declare var SocketIOClient: any;
 declare var NSURL: any;
-declare var SocketIOClientConfiguration: any;
+declare var SocketIOClient: any;
+declare var SocketAckEmitter: any;
+
+SocketIOClient;
+SocketAckEmitter; // fixes issue with class attributes and function not being recognized
 
 import * as helpers from "./helpers";
 
@@ -73,13 +76,10 @@ export class Socket {
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
         let listener = function(data: Array<any>, ack: any) {
-            let payload = Array.prototype.slice.call(data);
-            if (typeof ack === 'undefined') {
-                ack = null;
-            } else if (typeof ack === 'object' && ack && !(ack instanceof SocketAckEmitter)) {
+            let payload = helpers.deserialize(data);
+            if (ack.ackNum === -1) {
                 ack = null;
             }
-            payload = payload.map(helpers.deserialize);
             debug('on', event, payload, ack ? 'ack' : '');
             if (ack) {
                 let _ack = function(...args) {
@@ -122,17 +122,13 @@ export class Socket {
         payload = payload.map(helpers.serialize);
         if (ack) {
             let _ack = function(args) {
-                args = Array.prototype.slice.call(args).map(helpers.deserialize);
+                args = helpers.deserialize(args);
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            // this.ios.emitWithAckWithItems(event, ...payload)(0, _ack);
-            this.ios.emitWithAckWithItems(event, payload)({
-                timeoutAfter: 0,
-                callback: _ack
-            });
+            this.ios.emitWithAckWith(event, payload)(0, _ack);
         } else {
-            this.ios.emitWithItems(event, payload);
+            this.ios.emitWith(event, payload);
         }
     }
 

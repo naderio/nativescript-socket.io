@@ -8,5 +8,4 @@ application.on(application.uncaughtErrorEvent, function (event) {
   debug('ERROR!', error.name, error.message, error.stackTrace, error.nativeException);
 });
 
-
 application.start({ moduleName: "main-page" });

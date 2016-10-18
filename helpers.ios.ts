@@ -43,17 +43,18 @@ export function deserialize(nativeData: any): any {
 
   if (nativeData instanceof NSArray) {
     let array = [];
-    for (let value of nativeData) {
-      array[array.length] = deserialize(array[value]);
+    for (let i = 0, n = nativeData.count; i < n; i++) {
+      array[i] = deserialize(nativeData.objectAtIndex(i));
     };
     return array;
   }
 
   if (nativeData instanceof NSDictionary) {
     let dict = {};
-    for (let key of nativeData) {
+    for (let i = 0, n = nativeData.allKeys.count; i < n; i++) {
+      let key = nativeData.allKeys.objectAtIndex(i);
       dict[key] = deserialize(nativeData.objectForKey(key));
-    }
+    };
     return dict;
   }
 

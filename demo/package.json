@@ -13,6 +13,7 @@
     }
   },
   "dependencies": {
+    "base": "file:plugins/base",
     "nativescript-socket.io": "file:..",
     "nativescript-unit-test-runner": "^0.3.3",
     "tns-core-modules": "^2.3.0"
