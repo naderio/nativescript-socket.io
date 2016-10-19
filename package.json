@@ -1,6 +1,6 @@
 {
   "name": "nativescript-socket.io",
-  "version": "0.1.6",
+  "version": "0.2.0-pre",
   "description": "Socket.io implementation in NativeScript",
   "main": "socket.js",
   "nativescript": {
@@ -18,7 +18,10 @@
   },
   "keywords": [
     "nativescript",
-    "socket.io"
+    "socket.io",
+    "websocket",
+    "android",
+    "ios"
   ],
   "author": "Nader Toukabri <contact@nader.tn>",
   "license": "Unlicense",
@@ -34,6 +37,6 @@
     "karma-nativescript-launcher": "^0.4.0",
     "mocha": "^3.0.2",
     "tns-core-modules": "*",
-    "typescript": "^1.8.10"
+    "typescript": "^2.0.3"
   }
 }

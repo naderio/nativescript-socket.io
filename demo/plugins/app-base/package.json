@@ -1,5 +1,5 @@
 {
-  "name": "base",
+  "name": "app-base",
   "version": "0.0.0",
   "nativescript": {
     "platforms": {
