@@ -13,7 +13,7 @@
     }
   },
   "dependencies": {
-    "base": "file:plugins/base",
+    "nativescript-app-base": "file:plugins/nativescript-app-base",
     "nativescript-socket.io": "file:..",
     "nativescript-unit-test-runner": "^0.3.3",
     "tns-core-modules": "^2.3.0"
@@ -24,9 +24,9 @@
     "babylon": "6.8.0",
     "chai": "^3.5.0",
     "filewalker": "0.1.2",
-    "karma": "^1.2.0",
+    "karma": "^1.3.0",
     "karma-chai": "^0.1.0",
-    "karma-mocha": "^1.1.1",
+    "karma-mocha": "^1.2.0",
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "mocha": "^3.0.2"
