@@ -71,7 +71,7 @@ export class Socket {
     }
 
     get connected(): boolean {
-        return this.ios && this.ios.connected();
+        return this.ios && this.ios.engine.connected;
     }
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
