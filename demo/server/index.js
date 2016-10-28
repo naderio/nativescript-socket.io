@@ -22,14 +22,17 @@ server.of('/asd').on('connection', function() {
     // register namespace
 });
 
-server.on('connection', function(socket) {
+server.of('/demo').on('connection', function(socket) {
     debug('connect');
+
+    // debug('socket.handshake', socket.handshake);
+
+    debug('socket.request._query', socket.request._query);
 
     // simple test
     socket.on('hi', function() {
         args = Array.prototype.slice.call(arguments);
         debug('on', 'hi', JSON.stringify(Array.from(arguments), null, 2));
-        // socket.emit('hi');
         args.unshift('hi');
         socket.emit.apply(socket, args);
     });
