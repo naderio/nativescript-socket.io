@@ -26,10 +26,12 @@ SocketIO.enableDebug(); // optionnal
 // SocketIO.enableDebug(myCustomDebugFunction);
 
 var options = {
-  query: 'token=' + 'SOME_JWT_TOKEN_HERE',
+  query: {
+    token: 'SOME_TOKEN_HERE',
+  },
 };
 
-var socket = SocketIO.connect('http://somewhere/api/', options);
+var socket = SocketIO.connect('http://somewhere/path/', options);
 
 socket.on('connect', function(){
   console.log('connect');

@@ -3,14 +3,15 @@
 declare var NSURL: any;
 declare var SocketIOClient: any;
 declare var SocketAckEmitter: any;
+declare var OnAckCallback: any;
 
-SocketIOClient;
-SocketAckEmitter; // fixes issue with class attributes and function not being recognized
+SocketAckEmitter; // fixes unrecognized class issue
+OnAckCallback; // fixes unrecognized class issue
 
 import * as helpers from "./helpers";
 
 
-const debugNull = function(...args: Array<any>): void { };
+const debugNop = function(...args: Array<any>): void { };
 
 function debugDefault(...args: Array<any>) {
     args = args.map((value) => {
@@ -27,14 +28,14 @@ function debugDefault(...args: Array<any>) {
     console.log.apply(console, args);
 }
 
-let debug = debugNull;
+let debug = debugNop;
 
 export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
     debug = debugFn;
 }
 
 export function disableDebug(): void {
-    debug = debugNull;
+    debug = debugNop;
 }
 
 
@@ -50,15 +51,42 @@ export class Socket {
 
     private _listenerMap = new Map();
 
-    constructor(uri: string, options: Object = {}) {
+    constructor(uri: string, options: any = {}) {
 
-        // let config = SocketIOClientConfiguration.alloc().init();
+        let _options : any = {};
 
-        let config = [];
+        if (uri.indexOf('/', 7) !== -1) {
+            let path = uri.slice(uri.indexOf('/', 7))];
+            _options.nsp = path;
+        } else {
+            _options.nsp = '/';
+        }
         
-        // TODO: convert options to config
+        if (options.query) {
+            _options.connectParams = {};
+            if (typeof options.query === 'string') {
+                options.query.split('&').forEach(function(pair){
+                    pair = pair.split('=').map(decodeURIComponent);
+                    _options.connectParams[pair[0]] = pair[1];
+                });
+            } else {
+                Object.keys(options.query).forEach(function(key){
+                    _options.connectParams[key] = String(options.query[key]);
+                });
+            }
+        }
 
-        this.ios = SocketIOClient.alloc().initWithSocketURLConfig(NSURL.URLWithString(uri), config);
+        // if ('secure' in options) {
+        //     _options.secure = !!options.secure;
+        // }
+
+        if (options.ios) {
+            Object.keys(options.ios).forEach(function(prop) {
+                _options[prop] = options.ios[prop];
+            });
+        }
+
+        this.ios = SocketIOClient.alloc().initWithSocketURLConfig(NSURL.URLWithString(uri), _options);
 
     }
 
@@ -71,17 +99,14 @@ export class Socket {
     }
 
     get connected(): boolean {
-        return this.ios && this.ios.connected();
+        return this.ios && this.ios.engine.connected;
     }
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
         let listener = function(data: Array<any>, ack: any) {
             let payload = helpers.deserialize(data);
-            if (ack.ackNum === -1) {
-                ack = null;
-            }
-            debug('on', event, payload, ack ? 'ack' : '');
-            if (ack) {
+            debug('on', event, payload, ack && ack.expected ? 'ack' : '');
+            if (ack && ack.expected) {
                 let _ack = function(...args) {
                     debug('on', event, 'ack', args);
                     args = args.map(helpers.serialize)
@@ -126,7 +151,7 @@ export class Socket {
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            this.ios.emitWithAckWith(event, payload)(0, _ack);
+            this.ios.emitWithAckWith(event, payload).timingOutAfterCallback(0, _ack);
         } else {
             this.ios.emitWith(event, payload);
         }

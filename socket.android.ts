@@ -10,7 +10,7 @@ const _Socket = io.socket.client.Socket;
 const _Ack = io.socket.client.Ack;
 
 
-const debugNull = function(...args: Array<any>): void { };
+const debugNop = function(...args: Array<any>): void { };
 
 function debugDefault(...args: Array<any>) {
     args = args.map((value) => {
@@ -27,14 +27,14 @@ function debugDefault(...args: Array<any>) {
     console.log.apply(console, args);
 }
 
-let debug = debugNull;
+let debug = debugNop;
 
 export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
     debug = debugFn;
 }
 
 export function disableDebug(): void {
-    debug = debugNull;
+    debug = debugNop;
 }
 
 
@@ -45,6 +45,7 @@ export function connect(uri: any, options?: any): Socket {
 }
 
 
+
 export class Socket {
 
     private static SOCKET_CLASS = 'io.socket.client.Socket';
@@ -53,14 +54,30 @@ export class Socket {
 
     private _listenerMap = new Map();
 
-    constructor(uri: string, options: Object = {}) {
+    constructor(uri: string, options: any = {}) {
 
         let _options = new _IO.Options();
-        if (options) {
-            Object.keys(options).forEach(function(prop) {
-                _options[prop] = options[prop];
+
+        if (options.query) {
+            if (typeof options.query === 'string') {
+                _options.query = options.query;
+            } else {
+                 _options.query = Object.keys(options.query).map(function(key){
+                    return encodeURIComponent(key) + '=' + encodeURIComponent(options.query[key]);
+                }).join('&');
+            }
+        }
+
+        // if ('secure' in options) {
+        //     _options.secure = !!options.secure;
+        // }
+
+        if (options.android) {
+            Object.keys(options.android).forEach(function(prop) {
+                _options[prop] = options.android[prop];
             });
         }
+
         this.android = _IO.socket(uri, _options);
 
     }
