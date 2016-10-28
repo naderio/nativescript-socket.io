@@ -26,7 +26,9 @@ SocketIO.enableDebug(); // optionnal
 // SocketIO.enableDebug(myCustomDebugFunction);
 
 var options = {
-  query: 'token=' + 'SOME_TOKEN_HERE',
+  query: {
+    token: 'SOME_TOKEN_HERE',
+  },
 };
 
 var socket = SocketIO.connect('http://somewhere/path/', options);
