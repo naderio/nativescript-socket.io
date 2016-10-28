@@ -39,10 +39,15 @@ function onLoaded(args) {
     
     SocketIO.enableDebug(require('./debug')('socket.io'));
 
-    var socket = SocketIO.connect('http://192.168.1.111:3210', {
+    var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
         // log: true,
-        secure: false,
-        forceWebsockets: true,
+        // secure: false,
+        // forceWebsockets: true,
+        // query: 'scope=client&token=123',
+        query: {
+            scope: 'client',
+            token: '123',
+        },
     });
     socket.on('error', function(error) {
         debug('error', error);
