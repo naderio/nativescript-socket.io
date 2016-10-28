@@ -3,9 +3,10 @@
 declare var NSURL: any;
 declare var SocketIOClient: any;
 declare var SocketAckEmitter: any;
+declare var OnAckCallback: any;
 
-SocketIOClient;
-SocketAckEmitter; // fixes issue with class attributes and function not being recognized
+SocketAckEmitter; // fixes unrecognized class issue
+OnAckCallback; // fixes unrecognized class issue
 
 import * as helpers from "./helpers";
 
@@ -77,11 +78,8 @@ export class Socket {
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
         let listener = function(data: Array<any>, ack: any) {
             let payload = helpers.deserialize(data);
-            if (ack.ackNum === -1) {
-                ack = null;
-            }
             debug('on', event, payload, ack ? 'ack' : '');
-            if (ack) {
+            if (ack && ack.isRequired()) {
                 let _ack = function(...args) {
                     debug('on', event, 'ack', args);
                     args = args.map(helpers.serialize)
@@ -126,7 +124,7 @@ export class Socket {
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            this.ios.emitWithAckWith(event, payload)(0, _ack);
+            this.ios.emitWithAckWith(event, payload).timingOutAfterCallback(0, _ack);
         } else {
             this.ios.emitWith(event, payload);
         }

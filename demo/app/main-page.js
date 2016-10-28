@@ -9,26 +9,34 @@ exports.onNavigatingTo = onNavigatingTo;
 
 var debug = require('./debug')(__filename);
 
-// var SocketIO = require('nativescript-socket.io');
-var SocketIO = require('./dev');
+function debugClass(_class) {
+
+    debug(_class.name, typeof SocketIOClientConfiguration);
+
+    // debug(_class.name, Object.keys(_class.prototype));
+
+    Object.keys(_class.prototype).forEach(function(method) {
+        try {
+            debug(_class.name, method, typeof _class.prototype[method], typeof _class.prototype[method] === 'function' ? _class.prototype[method].length : '');
+        } catch(e){
+            debug(_class.name, method, '?');
+        }
+    })
+
+}
+
+function debugInstance(instance) {
+    debugClass(instance.constructor);
+}
+
+var SocketIO = require('nativescript-socket.io');
+// var SocketIO = require('./dev');
 
 function onLoaded(args) {
     var page = args.object;
-
-    // debug('SocketIOClient', Object.keys(SocketIOClient.prototype));
-
-    debug('SocketIOClientConfiguration', typeof SocketIOClientConfiguration);
-    debug('SocketIOClientOption', typeof SocketIOClientOption);
-    debug('SocketIOClientOptions', typeof SocketIOClientOptions);
-
-    Object.keys(SocketIOClient.prototype).forEach(function(method) {
-        try {
-            debug('SocketIOClient', method, typeof SocketIOClient.prototype[method], typeof SocketIOClient.prototype[method] === 'function' ? SocketIOClient.prototype[method].length : '');
-        } catch(e){
-            debug('SocketIOClient', method, '?');
-        }
-    });
-
+    
+    // debugClass(SocketIOClient);
+    
     SocketIO.enableDebug(require('./debug')('socket.io'));
 
     var socket = SocketIO.connect('http://192.168.1.111:3210', {
@@ -42,19 +50,6 @@ function onLoaded(args) {
 
     socket.on('connect', function() {
         debug('connect');
-
-
-    Object.keys(socket.engine).forEach(function(method) {
-        try {
-            debug('socket.engine', method, typeof socket.engine[method], typeof socket.engine[method] === 'function' ? socket.engine[method].length : '');
-        } catch(e){
-            try {
-                debug('socket.engine', method, socket.engine[method]);
-            } catch(e){
-                debug('socket.engine', method, '?');
-            }
-        }
-    });
 
         function hiListener(data) {
             debug('on', 'hi');
