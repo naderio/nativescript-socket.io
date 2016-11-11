@@ -1,4 +1,1 @@
-# pod 'Socket.IO-Client-Swift', '~> 8.1.0'
-pod 'Socket.IO-Client-Swift', :git => 'https://github.com/naderio/socket.io-client-swift.git'
-# pod 'Socket.IO-Client-Swift', :path => '~/Workspace/NativeScript/socket.io-client-swift'
-
+pod 'Socket.IO-Client-Swift', '~> 8.1.1'

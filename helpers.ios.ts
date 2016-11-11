@@ -16,7 +16,7 @@ export function serialize(data: any): any {
       }
 
       if (!data) {
-        return null;
+        return NSNull.new();
       }
 
       if (Array.isArray(data)) {
@@ -31,14 +31,14 @@ export function serialize(data: any): any {
       return NSDictionary.dictionaryWithDictionary(node);
 
     default:
-      return null;
+      return NSNull.new();
   }
 }
 
 
 export function deserialize(nativeData: any): any {
-  if (nativeData === null || typeof nativeData !== 'object') {
-    return nativeData;
+  if (nativeData instanceof NSNull) {
+    return null;
   }
 
   if (nativeData instanceof NSArray) {
