@@ -3,9 +3,7 @@ nativescript-socket.io
 
 # State
 
-Android implementation is stable and almost complete.
-
-iOS implementation is in active development.
+Android and iOS implementations are stable and in sync.
 
 Please check [releases and changelog](https://github.com/naderio/nativescript-socket.io/releases) and [roadmap](https://github.com/naderio/nativescript-socket.io/issues/3) for more information.  
 
@@ -31,7 +29,7 @@ var options = {
   },
 };
 
-var socket = SocketIO.connect('http://somewhere/path/', options);
+var socket = SocketIO.connect('http://somewhere/namespace', options);
 
 socket.on('connect', function(){
   console.log('connect');
