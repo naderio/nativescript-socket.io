@@ -5,3 +5,4 @@ demo/
 *.map
 *.json
 *.log
+.tmp
