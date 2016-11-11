@@ -56,7 +56,7 @@ export class Socket {
         let _options : any = {};
 
         if (uri.indexOf('/', 7) !== -1) {
-            let path = uri.slice(uri.indexOf('/', 7))];
+            let path = uri.slice(uri.indexOf('/', 7));
             _options.nsp = path;
         } else {
             _options.nsp = '/';
