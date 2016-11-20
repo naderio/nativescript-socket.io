@@ -1,5 +1,6 @@
 demo/
 *.ts
+!common.d.ts
 !helpers.d.ts
 !socket.d.ts
 *.map

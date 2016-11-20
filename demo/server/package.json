@@ -9,6 +9,6 @@
   "license": "ISC",
   "dependencies": {
     "expect.js": "^0.3.1",
-    "socket.io": "^1.5.1"
+    "socket.io": "^1.6.0"
   }
 }

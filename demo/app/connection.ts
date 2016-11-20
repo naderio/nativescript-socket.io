@@ -1,12 +1,8 @@
 
-var debug = require('./debug')(__filename);
-
 // var SocketIO = require('nativescript-socket.io');
 import * as SocketIO from 'nativescript-socket.io';
 
-SocketIO.enableDebug(require('./debug')('socket.io'));
-
-export var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
+export var socket = SocketIO.connect('http://192.168.1.111:3210/demo', <SocketIO.SocketOptions>{
     // log: true,
     // secure: false,
     // forceWebsockets: true,
@@ -15,5 +11,4 @@ export var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
         scope: 'client',
         token: '123',
     },
-})
-
+});

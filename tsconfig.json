@@ -7,11 +7,11 @@
         "sourceMap": true
     },
     "files": [
-        "socket.d.ts",
         "socket.android.ts",
         "socket.ios.ts",
         "helpers.android.ts",
-        "helpers.ios.ts"
+        "helpers.ios.ts",
+        "common.ts"
     ],
     "compileOnSave": false
 }

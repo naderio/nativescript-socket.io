@@ -31,7 +31,7 @@ function debugInstance(instance) {
 
 var SocketIO = require('nativescript-socket.io');
 // var SocketIO = require('./dev');
-    
+
 SocketIO.enableDebug(require('./debug')('socket.io'));
 
 function onLoaded(args) {
@@ -39,20 +39,18 @@ function onLoaded(args) {
     
     // debugClass(SocketIOClient);
 
-    /*
-    var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
-        // log: true,
-        // secure: false,
-        // forceWebsockets: true,
-        // query: 'scope=client&token=123',
-        query: {
-            scope: 'client',
-            token: '123',
-        },
-    });
-    */
+    // var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
+    //     // log: true,
+    //     // secure: false,
+    //     // forceWebsockets: true,
+    //     // query: 'scope=client&token=123',
+    //     query: {
+    //         scope: 'client',
+    //         token: '123',
+    //     },
+    // });
 
-    var socket = require('./socket')
+    var socket = require('./connection').socket;
     
     socket.on('error', function(error) {
         debug('error', error);

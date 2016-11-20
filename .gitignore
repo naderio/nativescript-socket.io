@@ -4,6 +4,7 @@ node_modules
 !demo/server/*.js
 *.map
 *.d.ts
+!common.d.ts
 !helpers.d.ts
 !socket.d.ts
 demo/platforms

@@ -2,7 +2,10 @@
 
 declare var io;
 
-import * as helpers from "./helpers";
+import { SocketOptions } from "./common";
+import { serialize, deserialize } from "./helpers";
+
+export { SocketOptions };
 
 const _Emitter = io.socket.emitter.Emitter;
 const _IO = io.socket.client.IO;
@@ -37,13 +40,11 @@ export function disableDebug(): void {
     debug = debugNop;
 }
 
-
-export function connect(uri: any, options?: any): Socket {
+export function connect(uri: any, options?: SocketOptions): Socket {
     let socket = new Socket(uri, options || {});
     socket.connect();
     return socket;
 }
-
 
 export class Socket {
 
@@ -103,12 +104,12 @@ export class Socket {
                 payload.push(ack);
                 ack = null;
             }
-            payload = payload.map(helpers.deserialize);
+            payload = payload.map(deserialize);
             debug('on', event, payload, ack ? 'ack' : '');
             if (ack) {
                 let _ack = function(...args) {
                     debug('on', event, 'ack', args);
-                    args = args.map(helpers.serialize);
+                    args = args.map(serialize);
                     ack.call(args);
                 };
                 payload.push(_ack);
@@ -146,10 +147,10 @@ export class Socket {
             ack = null;
         }
         debug('emit', event, payload, ack ? 'ack' : '');
-        payload = payload.map(helpers.serialize);
+        payload = payload.map(serialize);
         if (ack) {
             let _ack = function(args) {
-                args = Array.prototype.slice.call(args).map(helpers.deserialize);
+                args = Array.prototype.slice.call(args).map(deserialize);
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };

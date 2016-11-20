@@ -6,11 +6,13 @@ declare var SocketIOClient;
 declare var SocketAckEmitter;
 declare var OnAckCallback;
 
+import { SocketOptions } from "./common";
+import { serialize, deserialize } from "./helpers";
+
+export { SocketOptions };
+
 SocketAckEmitter; // fixes unrecognized class issue
 OnAckCallback; // fixes unrecognized class issue
-
-import * as helpers from "./helpers";
-
 
 const debugNop = function(...args: Array<any>): void { };
 
@@ -39,8 +41,7 @@ export function disableDebug(): void {
     debug = debugNop;
 }
 
-
-export function connect(uri: any, options?: any): Socket {
+export function connect(uri: any, options?: SocketOptions): Socket {
     let socket = new Socket(uri, options || {});
     socket.connect();
     return socket;
@@ -105,12 +106,12 @@ export class Socket {
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
         let listener = function(data: Array<any>, ack: any) {
-            let payload = helpers.deserialize(data);
+            let payload = deserialize(data);
             debug('on', event, payload, ack && ack.expected ? 'ack' : '');
             if (ack && ack.expected) {
                 let _ack = function(...args) {
                     debug('on', event, 'ack', args);
-                    args = args.map(helpers.serialize)
+                    args = args.map(serialize)
                     ack.with(args);
                 };
                 payload.push(_ack);
@@ -145,10 +146,10 @@ export class Socket {
             ack = null;
         }
         debug('emit', event, payload, ack ? 'ack' : '');
-        payload = payload.map(helpers.serialize);
+        payload = payload.map(serialize);
         if (ack) {
             let _ack = function(args) {
-                args = helpers.deserialize(args);
+                args = deserialize(args);
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };

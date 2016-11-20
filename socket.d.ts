@@ -1,28 +1,28 @@
 
-declare module "nativescript-socket.io" {
+import { SocketOptions } from "./common";
 
-    export default function connect(uri: any, options: any): Socket;
+export { SocketOptions };
 
-    export function enableDebug(debugFb?: (...args: Array<any>) => any): void;
+export declare function enableDebug(debugFn?: ((...args: Array<any>) => any)): void;
 
-    export function disableDebug(): any;
+export declare function disableDebug(): void;
 
-    export class Socket {
+export declare function connect(uri: string, options?: SocketOptions): Socket;
 
-        public connected: boolean;
+export declare class Socket {
 
-        public ios: any;
-        public android: any;
+    private ios: any;
+    private android: any;
 
-        public constructor(uri: string, options?: any);
+    constructor(uri: string, options?: any);
 
-        public connect(): void;
-        public disconnect(): void;
+    readonly connected: boolean;
 
-        public on(event: string, callback: (...payload: Array<any>) => any): Socket;
-        public off(event: string, listener?: Function): Socket;
-        public emit(event: string, ...payload: Array<any>): void;
+    connect(): void;
+    disconnect(): void;
 
-    }
+    on(event: string, callback: (...payload: Array<any>) => any): this;
+    off(event: string, listener?: Function): this;
+    emit(event: string, ...payload: Array<any>): void;
 
 }
