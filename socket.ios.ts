@@ -1,9 +1,10 @@
 'use strict';
 
-declare var NSURL: any;
-declare var SocketIOClient: any;
-declare var SocketAckEmitter: any;
-declare var OnAckCallback: any;
+declare var NSNull;
+declare var NSURL;
+declare var SocketIOClient;
+declare var SocketAckEmitter;
+declare var OnAckCallback;
 
 SocketAckEmitter; // fixes unrecognized class issue
 OnAckCallback; // fixes unrecognized class issue

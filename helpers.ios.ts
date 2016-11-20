@@ -1,5 +1,6 @@
 'use strict';
 
+declare var NSNull;
 declare var NSDictionary;
 declare var NSArray;
 

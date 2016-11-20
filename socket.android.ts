@@ -1,6 +1,6 @@
 'use strict';
 
-declare var io: any;
+declare var io;
 
 import * as helpers from "./helpers";
 
@@ -43,7 +43,6 @@ export function connect(uri: any, options?: any): Socket {
     socket.connect();
     return socket;
 }
-
 
 
 export class Socket {

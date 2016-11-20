@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "nativescript-app-base": "file:plugins/nativescript-app-base",
+    "nativescript-dev-typescript": "^0.3.3",
     "nativescript-socket.io": "file:..",
     "nativescript-unit-test-runner": "^0.3.3",
     "tns-core-modules": "^2.3.0"
@@ -29,6 +30,7 @@
     "karma-mocha": "^1.2.0",
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
-    "mocha": "^3.0.2"
+    "mocha": "^3.0.2",
+    "typescript": "^2.0.10"
   }
 }

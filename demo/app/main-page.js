@@ -31,14 +31,15 @@ function debugInstance(instance) {
 
 var SocketIO = require('nativescript-socket.io');
 // var SocketIO = require('./dev');
+    
+SocketIO.enableDebug(require('./debug')('socket.io'));
 
 function onLoaded(args) {
     var page = args.object;
     
     // debugClass(SocketIOClient);
-    
-    SocketIO.enableDebug(require('./debug')('socket.io'));
 
+    /*
     var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
         // log: true,
         // secure: false,
@@ -49,6 +50,10 @@ function onLoaded(args) {
             token: '123',
         },
     });
+    */
+
+    var socket = require('./socket')
+    
     socket.on('error', function(error) {
         debug('error', error);
     });

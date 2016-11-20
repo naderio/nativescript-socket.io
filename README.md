@@ -72,9 +72,8 @@ socket.emit('hello-ack', {
 
 import using either of
 
-* `import SocketIO = require("nativescript-socket.io")`
 * `import * as SocketIO from "nativescript-socket.io"`
-
+* `var SocketIO = require("nativescript-socket.io")`
 
 # Demo
 

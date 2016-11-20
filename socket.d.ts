@@ -1,6 +1,5 @@
-declare module "nativescript-socket.io" {
 
-    import * as helpers from "./helpers";
+declare module "nativescript-socket.io" {
 
     export default function connect(uri: any, options: any): Socket;
 
@@ -13,7 +12,7 @@ declare module "nativescript-socket.io" {
         public connected: boolean;
 
         public ios: any;
-        public android: io.socket.client.Socket;
+        public android: any;
 
         public constructor(uri: string, options?: any);
 
