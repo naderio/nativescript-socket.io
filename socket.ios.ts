@@ -51,7 +51,7 @@ export class Socket {
 
     private ios: SocketIOClient;
 
-    private _listenerMap = new Map();
+    private _listeners = new WeakMap();
 
     constructor(uri: string, options: any = {}) {
 
@@ -119,17 +119,17 @@ export class Socket {
             callback.apply(null, payload);
         };
         let listenerId = this.ios.onCallback(event, listener);
-        this._listenerMap.set(callback, listenerId);
+        this._listeners.set(callback, listenerId);
         return this;
     }
 
-    off(event: string, listener?: Function) {
-        debug('off', event, listener);
-        if (listener) {
-            let listenerId = this._listenerMap.get(listener);
+    off(event: string, callback?: Function) {
+        debug('off', event, callback);
+        if (callback) {
+            let listenerId = this._listeners.get(callback);
             if (listenerId) {
                 this.ios.offWithId(listenerId);
-                this._listenerMap.delete(listener);
+                this._listeners.delete(callback);
             }
         } else {
             this.ios.off(event);

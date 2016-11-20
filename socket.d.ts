@@ -22,7 +22,7 @@ export declare class Socket {
     disconnect(): void;
 
     on(event: string, callback: (...payload: Array<any>) => any): this;
-    off(event: string, listener?: Function): this;
+    off(event: string, callback?: Function): this;
     emit(event: string, ...payload: Array<any>): void;
 
 }

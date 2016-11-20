@@ -169,7 +169,11 @@ function onLoaded(args) {
         }, 6000);
 
         setTimeout(function() {
-            setInterval(function() {
+            var intervalId = setInterval(function() {
+                if (!socket.connected) {
+                    clearInterval(intervalId);
+                    return;
+                }
                 debug('emit', 'hi');
                 socket.emit('hi');
             }, 2000);
@@ -184,6 +188,11 @@ function onLoaded(args) {
             debug('off', 'hi');
             socket.off('hi');
         }, 20000);
+
+        setTimeout(function() {
+            debug('disconnect');
+            socket.disconnect();
+        }, 25000);
 
     });
 

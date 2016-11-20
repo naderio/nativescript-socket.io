@@ -52,7 +52,7 @@ export class Socket {
 
     private android: io.socket.client.Socket;
 
-    private _listenerMap = new Map();
+    private _listeners = new WeakMap();
 
     constructor(uri: string, options: any = {}) {
 
@@ -119,18 +119,18 @@ export class Socket {
         listener = new _Emitter.Listener({
             call: listener,
         });
-        this._listenerMap.set(callback, listener);
+        this._listeners.set(callback, listener);
         this.android.on(event, listener);
         return this;
     }
 
-    off(event: string, listener?: Function) {
-        debug('off', event, listener);
-        if (listener) {
-            listener = this._listenerMap.get(listener);
+    off(event: string, callback?: Function) {
+        debug('off', event, callback);
+        if (callback) {
+            let listener = this._listeners.get(callback);
             if (listener) {
                 this.android.off(event, listener);
-                this._listenerMap.delete(listener);
+                this._listeners.delete(callback);
             }
         } else {
             this.android.off(event);
