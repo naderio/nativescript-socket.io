@@ -4,6 +4,7 @@ declare var NSNull;
 declare var NSURL;
 declare var SocketIOClient;
 declare var SocketAckEmitter;
+declare var SocketEngine;
 declare var OnAckCallback;
 
 import { SocketOptions } from "./common";
@@ -11,8 +12,10 @@ import { serialize, deserialize } from "./helpers";
 
 export { SocketOptions };
 
+SocketIOClient; // fixes unrecognized class issue
 SocketAckEmitter; // fixes unrecognized class issue
 OnAckCallback; // fixes unrecognized class issue
+SocketEngine; // fixes unrecognized class issue
 
 const debugNop = function(...args: Array<any>): void { };
 

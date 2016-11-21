@@ -39,7 +39,7 @@ function onLoaded(args) {
     
     // debugClass(SocketIOClient);
 
-    // var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
+    // var socket = SocketIO.connect('http://192.168.43.140:3210/demo', {
     //     // log: true,
     //     // secure: false,
     //     // forceWebsockets: true,
@@ -52,6 +52,10 @@ function onLoaded(args) {
 
     var socket = require('./connection').socket;
     
+    // setInterval(function() {
+    //     debug('socket.connected', socket.connected);
+    // }, 2000);
+
     socket.on('error', function(error) {
         debug('error', error);
     });
