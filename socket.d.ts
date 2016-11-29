@@ -1,20 +1,13 @@
+import { SocketBase, SocketOptions, enableDebug, disableDebug } from "./common";
 
-import { SocketOptions } from "./common";
+export { SocketOptions, enableDebug, disableDebug };
 
-export { SocketOptions };
-
-export declare function enableDebug(debugFn?: ((...args: Array<any>) => any)): void;
-
-export declare function disableDebug(): void;
-
-export declare function connect(uri: string, options?: SocketOptions): Socket;
-
-export declare class Socket {
+export declare class Socket extends SocketBase {
 
     private ios: any;
     private android: any;
 
-    constructor(uri: string, options?: any);
+    constructor(uri: string, options?: SocketOptions);
 
     readonly connected: boolean;
 
@@ -23,6 +16,8 @@ export declare class Socket {
 
     on(event: string, callback: (...payload: Array<any>) => any): this;
     off(event: string, callback?: Function): this;
-    emit(event: string, ...payload: Array<any>): void;
+    emit(event: string, ...payload: Array<any>): this;
 
 }
+
+export declare function connect(uri: string, options?: SocketOptions): Socket;

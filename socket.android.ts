@@ -1,60 +1,26 @@
 'use strict';
 
-declare var io;
-
-import { SocketOptions } from "./common";
+import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
 import { serialize, deserialize } from "./helpers";
 
-export { SocketOptions };
+declare var io;
 
 const _Emitter = io.socket.emitter.Emitter;
 const _IO = io.socket.client.IO;
 const _Socket = io.socket.client.Socket;
 const _Ack = io.socket.client.Ack;
 
+export { SocketOptions, enableDebug, disableDebug };
 
-const debugNop = function(...args: Array<any>): void { };
-
-function debugDefault(...args: Array<any>) {
-    args = args.map((value) => {
-        if (typeof value === 'object' && value) {
-            try {
-                value = JSON.stringify(value);
-            } catch (e) {
-                value = value.toString();
-            }
-        }
-        return value;
-    });
-    args.unshift('nativescript-socket.io');
-    console.log.apply(console, args);
-}
-
-let debug = debugNop;
-
-export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
-    debug = debugFn;
-}
-
-export function disableDebug(): void {
-    debug = debugNop;
-}
-
-export function connect(uri: any, options?: SocketOptions): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
-}
-
-export class Socket {
+export class Socket extends SocketBase {
 
     private static SOCKET_CLASS = 'io.socket.client.Socket';
 
     private android: io.socket.client.Socket;
 
-    private _listeners = new WeakMap();
+    constructor(uri: string, options: SocketOptions = {}) {
 
-    constructor(uri: string, options: any = {}) {
+        super();
 
         let _options = new _IO.Options();
 
@@ -82,16 +48,16 @@ export class Socket {
 
     }
 
+    get connected(): boolean {
+        return this.android && this.android.connected();
+    }
+
     connect() {
         this.android.connect();
     }
 
     disconnect() {
         this.android.disconnect();
-    }
-
-    get connected(): boolean {
-        return this.android && this.android.connected();
     }
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
@@ -160,7 +126,14 @@ export class Socket {
             payload.push(_ack);
         }
         this.android.emit(event, payload);
+        return this;
     }
 
+}
+
+export function connect(uri: string, options?: SocketOptions): Socket {
+    let socket = new Socket(uri, options || {});
+    socket.connect();
+    return socket;
 }
 

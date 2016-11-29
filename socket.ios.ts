@@ -1,5 +1,8 @@
 'use strict';
 
+import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
+import { serialize, deserialize } from "./helpers";
+
 declare var NSNull;
 declare var NSURL;
 declare var SocketIOClient;
@@ -7,56 +10,20 @@ declare var SocketAckEmitter;
 declare var SocketEngine;
 declare var OnAckCallback;
 
-import { SocketOptions } from "./common";
-import { serialize, deserialize } from "./helpers";
-
-export { SocketOptions };
-
 SocketIOClient; // fixes unrecognized class issue
 SocketAckEmitter; // fixes unrecognized class issue
 OnAckCallback; // fixes unrecognized class issue
 SocketEngine; // fixes unrecognized class issue
 
-const debugNop = function(...args: Array<any>): void { };
+export { SocketOptions, enableDebug, disableDebug };
 
-function debugDefault(...args: Array<any>) {
-    args = args.map((value) => {
-        if (typeof value === 'object' && value) {
-            try {
-                value = JSON.stringify(value);
-            } catch (e) {
-                value = value.toString();
-            }
-        }
-        return value;
-    });
-    args.unshift('nativescript-socket.io');
-    console.log.apply(console, args);
-}
-
-let debug = debugNop;
-
-export function enableDebug(debugFn: ((...args: Array<any>) => any) = debugDefault): void {
-    debug = debugFn;
-}
-
-export function disableDebug(): void {
-    debug = debugNop;
-}
-
-export function connect(uri: any, options?: SocketOptions): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
-}
-
-export class Socket {
+export class Socket extends SocketBase {
 
     private ios: SocketIOClient;
 
-    private _listeners = new WeakMap();
+    constructor(uri: string, options: SocketOptions = {}) {
 
-    constructor(uri: string, options: any = {}) {
+        super();
 
         let _options : any = {};
 
@@ -70,7 +37,7 @@ export class Socket {
         if (options.query) {
             _options.connectParams = {};
             if (typeof options.query === 'string') {
-                options.query.split('&').forEach(function(pair){
+                options.query.split('&').forEach(function(pair: any){
                     pair = pair.split('=').map(decodeURIComponent);
                     _options.connectParams[pair[0]] = pair[1];
                 });
@@ -95,16 +62,16 @@ export class Socket {
 
     }
 
+    get connected(): boolean {
+        return this.ios && this.ios.engine.connected;
+    }
+
     connect() {
         this.ios.connect();
     }
 
     disconnect() {
         this.ios.disconnect();
-    }
-
-    get connected(): boolean {
-        return this.ios && this.ios.engine.connected;
     }
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
@@ -160,7 +127,14 @@ export class Socket {
         } else {
             this.ios.emitWith(event, payload);
         }
+        return this;
     }
 
+}
+
+export function connect(uri: string, options?: SocketOptions): Socket {
+    let socket = new Socket(uri, options || {});
+    socket.connect();
+    return socket;
 }
 
