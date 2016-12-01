@@ -90,6 +90,36 @@ export class Socket extends SocketBase {
         return this;
     }
 
+    once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
+        let listener = function(args) {
+            let payload = Array.prototype.slice.call(args);
+            let ack = payload.pop();
+            if (typeof ack === 'undefined') {
+                ack = null;
+            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && ack.call)) {
+                payload.push(ack);
+                ack = null;
+            }
+            payload = payload.map(deserialize);
+            debug('once', event, payload, ack ? 'ack' : '');
+            if (ack) {
+                let _ack = function(...args) {
+                    debug('once', event, 'ack', args);
+                    args = args.map(serialize);
+                    ack.call(args);
+                };
+                payload.push(_ack);
+            }
+            callback.apply(null, payload);
+        };
+        listener = new _Emitter.Listener({
+            call: listener,
+        });
+        this._listeners.set(callback, listener);
+        this.android.once(event, listener);
+        return this;
+    }
+
     off(event: string, callback?: Function) {
         debug('off', event, callback);
         if (callback) {

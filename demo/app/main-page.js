@@ -194,7 +194,6 @@ function onLoaded(args) {
         }, 20000);
 
         setTimeout(function() {
-            debug('once', 'hi');
             socket.once('hi', hiListener);            
         }, 25000);
 

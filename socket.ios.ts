@@ -93,6 +93,25 @@ export class Socket extends SocketBase {
         return this;
     }
 
+    once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
+        let listener = function(data: Array<any>, ack: any) {
+            let payload = deserialize(data);
+            debug('once', event, payload, ack && ack.expected ? 'ack' : '');
+            if (ack && ack.expected) {
+                let _ack = function(...args) {
+                    debug('once', event, 'ack', args);
+                    args = args.map(serialize)
+                    ack.with(args);
+                };
+                payload.push(_ack);
+            }
+            callback.apply(null, payload);
+        };
+        let listenerId = this.ios.onceCallback(event, listener);
+        this._listeners.set(callback, listenerId);
+        return this;
+    }
+
     off(event: string, callback?: Function) {
         debug('off', event, callback);
         if (callback) {

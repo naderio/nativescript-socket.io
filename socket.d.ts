@@ -15,6 +15,7 @@ export declare class Socket extends SocketBase {
     disconnect(): void;
 
     on(event: string, callback: (...payload: Array<any>) => any): this;
+    once(event: string, callback: (...payload: Array<any>) => any): this;
     off(event: string, callback?: Function): this;
     emit(event: string, ...payload: Array<any>): this;
 
