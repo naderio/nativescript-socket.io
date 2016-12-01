@@ -15,11 +15,11 @@ export abstract class SocketBase {
 
     once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this {
         debug('once', event, callback);
-        function fn() {
+        let fn = function () {
             this.off(event, fn);
             callback.apply(this, arguments);
-        }
-        fn = fn.bind(this);
+        }.bind(this);
+        fn.callback = callback;
         this.on(event, fn);
         return this;
     }
