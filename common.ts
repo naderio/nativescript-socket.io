@@ -14,11 +14,13 @@ export abstract class SocketBase {
     abstract on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this;
 
     once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this {
-        function on() {
-            this.off(event, on);
+        debug('once', event, callback);
+        function fn() {
+            this.off(event, fn);
             callback.apply(this, arguments);
         }
-        this.on(event, on);
+        fn = fn.bind(this);
+        this.on(event, fn);
         return this;
     }
 

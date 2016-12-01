@@ -194,9 +194,14 @@ function onLoaded(args) {
         }, 20000);
 
         setTimeout(function() {
+            debug('once', 'hi');
+            socket.once('hi', hiListener);            
+        }, 25000);
+
+        setTimeout(function() {
             debug('disconnect');
             socket.disconnect();
-        }, 25000);
+        }, 30000);
 
     });
 
