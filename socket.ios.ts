@@ -17,6 +17,8 @@ SocketEngine; // fixes unrecognized class issue
 
 export { SocketOptions, enableDebug, disableDebug };
 
+const NAMESPACE_REGEXP : RegExp = /^https?\:\/\/[^\/]*(\/.*)$/i;
+
 export class Socket extends SocketBase {
 
     private ios: SocketIOClient;
@@ -27,9 +29,8 @@ export class Socket extends SocketBase {
 
         let _options : any = {};
 
-        if (uri.indexOf('/', 7) !== -1) {
-            let path = uri.slice(uri.indexOf('/', 7));
-            _options.nsp = path;
+        if (NAMESPACE_REGEXP.test(uri)) {
+            _options.nsp = uri.match(NAMESPACE_REGEXP)[1] || '/';
         } else {
             _options.nsp = '/';
         }

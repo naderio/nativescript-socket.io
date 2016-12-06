@@ -12,9 +12,9 @@ const _Ack = io.socket.client.Ack;
 
 export { SocketOptions, enableDebug, disableDebug };
 
-export class Socket extends SocketBase {
+const SOCKET_CLASS : string = 'io.socket.client.Socket';
 
-    private static SOCKET_CLASS = 'io.socket.client.Socket';
+export class Socket extends SocketBase {
 
     private android: io.socket.client.Socket;
 
@@ -66,7 +66,7 @@ export class Socket extends SocketBase {
             let ack = payload.pop();
             if (typeof ack === 'undefined') {
                 ack = null;
-            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && ack.call)) {
+            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(SOCKET_CLASS) === 0 && ack.call)) {
                 payload.push(ack);
                 ack = null;
             }
@@ -96,7 +96,7 @@ export class Socket extends SocketBase {
             let ack = payload.pop();
             if (typeof ack === 'undefined') {
                 ack = null;
-            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(Socket.SOCKET_CLASS) === 0 && ack.call)) {
+            } else if (typeof ack === 'object' && ack && !(ack.getClass().getName().indexOf(SOCKET_CLASS) === 0 && ack.call)) {
                 payload.push(ack);
                 ack = null;
             }

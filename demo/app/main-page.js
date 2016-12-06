@@ -1,11 +1,3 @@
-var createViewModel = require("./main-view-model").createViewModel;
-
-function onNavigatingTo(args) {
-    var page = args.object;
-    page.bindingContext = createViewModel();
-}
-exports.onNavigatingTo = onNavigatingTo;
-
 
 var debug = require('./debug')(__filename);
 
@@ -34,12 +26,14 @@ var SocketIO = require('nativescript-socket.io');
 
 SocketIO.enableDebug(require('./debug')('socket.io'));
 
+var socket;
+
 function onLoaded(args) {
     var page = args.object;
     
     // debugClass(SocketIOClient);
 
-    // var socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
+    // socket = SocketIO.connect('http://192.168.1.111:3210/demo', {
     //     // log: true,
     //     // secure: false,
     //     // forceWebsockets: true,
@@ -50,7 +44,7 @@ function onLoaded(args) {
     //     },
     // });
 
-    var socket = require('./connection').socket;
+    socket = require('./connection').socket;
     
     // setInterval(function() {
     //     debug('socket.connected', socket.connected);
@@ -206,3 +200,11 @@ function onLoaded(args) {
 
 }
 exports.onLoaded = onLoaded;
+
+function onUnloaded(args) {
+    if (socket) {
+        socket.disconnect();
+    }
+    socket = null;
+}
+exports.onUnloaded = onUnloaded;

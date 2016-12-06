@@ -1,7 +1,5 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" loaded="onLoaded">
-    <StackLayout>
-        <Label text="Tap the button" class="title" />
-        <Button text="TAP" tap="{{ onTap }}" />
-        <Label text="{{ message }}" class="message" textWrap="true" />
-    </StackLayout>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" loaded="onLoaded" unloaded="onUnloaded">
+    <GridLayout>
+        <Label text="Check terminal" class="message" textWrap="true" />
+    </GridLayout>
 </Page>
