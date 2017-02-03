@@ -159,6 +159,10 @@ export class Socket extends SocketBase {
         return this;
     }
 
+    removeAllListeners(): this {
+        this.android.off();
+        return this;
+    }
 }
 
 export function connect(uri: string, options?: SocketOptions): Socket {

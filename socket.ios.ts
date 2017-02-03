@@ -34,7 +34,7 @@ export class Socket extends SocketBase {
         } else {
             _options.nsp = '/';
         }
-        
+
         if (options.query) {
             _options.connectParams = {};
             if (typeof options.query === 'string') {
@@ -150,6 +150,10 @@ export class Socket extends SocketBase {
         return this;
     }
 
+    removeAllListeners(): this {
+        this.ios.removeAllHandlers();
+        return this;
+    }
 }
 
 export function connect(uri: string, options?: SocketOptions): Socket {
