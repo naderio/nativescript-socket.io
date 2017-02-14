@@ -1,20 +1,45 @@
-
 export interface SocketOptions {
     query?: string | Object;
     android?: any;
     ios?: any;
 }
 
-
 export abstract class SocketBase {
-
     protected _listeners = new WeakMap();
+
+    abstract get connected(): boolean;
+
+    get disconnected() {
+        return !this.connected;
+    }
+
+    abstract connect();
+    abstract disconnect();
+
+    open() {
+        this.connect();
+    }
+
+    close() {
+        this.disconnect();
+    }
 
     abstract on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this;
     abstract once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this;
     abstract off(event: string, callback?: Function): this;
     abstract emit(event: string, ...payload: Array<any>): this;
 
+    addEventListener(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) : this {
+        return this.on(event, callback);
+    }
+
+    removeListener(event: string, callback?: Function): this {
+        return this.off(event, callback);
+    }
+
+    removeEventListener(event: string, callback?: Function): this {
+        return this.off(event, callback);
+    }
 }
 
 export const debugNop = function(...args: Array<any>): void { };
