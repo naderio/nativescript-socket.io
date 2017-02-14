@@ -1,6 +1,6 @@
 {
   "name": "nativescript-socket.io",
-  "version": "0.4.2",
+  "version": "0.9.0",
   "description": "Socket.io implementation in NativeScript",
   "main": "socket",
   "typings": "socket.d.ts",
@@ -27,6 +27,10 @@
   ],
   "author": "Nader Toukabri <contact@nader.tn>",
   "license": "Unlicense",
+  "contributors": [{
+    "name" : "Ludovic Fabrèges",
+    "url" : "https://github.com/lfabreges"
+  }],
   "bugs": {
     "url": "https://github.com/naderio/nativescript-socket.io/issues"
   },
