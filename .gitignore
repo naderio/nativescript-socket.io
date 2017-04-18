@@ -3,7 +3,7 @@ node_modules
 !demo/app/*.js
 !demo/server/*.js
 *.map
-_*.d.ts
+*.d.ts
 !references.d.ts
 !common.d.ts
 !helpers.d.ts
