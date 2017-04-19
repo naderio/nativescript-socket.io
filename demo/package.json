@@ -9,7 +9,7 @@
       "version": "2.5.0"
     },
     "tns-ios": {
-      "version": "2.4.0"
+      "version": "2.5.0"
     }
   },
   "dependencies": {
@@ -30,7 +30,7 @@
     "karma-nativescript-launcher": "^0.4.0",
     "lazy": "1.0.11",
     "mocha": "^3.2.0",
-    "nativescript-dev-typescript": "^0.3.7",
+    "nativescript-dev-typescript": "^0.4.2",
     "typescript": "^2.1.6"
   }
 }
