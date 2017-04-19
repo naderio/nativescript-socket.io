@@ -3,8 +3,6 @@
 import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
 import { serialize, deserialize } from "./helpers";
 
-declare var io;
-
 const _Emitter = io.socket.emitter.Emitter;
 const _IO = io.socket.client.IO;
 const _Socket = io.socket.client.Socket;

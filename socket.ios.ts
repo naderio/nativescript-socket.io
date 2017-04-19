@@ -3,17 +3,10 @@
 import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
 import { serialize, deserialize } from "./helpers";
 
-declare var NSNull;
-declare var NSURL;
-declare var SocketIOClient;
-declare var SocketAckEmitter;
-declare var SocketEngine;
-declare var OnAckCallback;
-
-SocketIOClient; // fixes unrecognized class issue
-SocketAckEmitter; // fixes unrecognized class issue
-OnAckCallback; // fixes unrecognized class issue
-SocketEngine; // fixes unrecognized class issue
+SocketIOClient; // FIX: unrecognized class issue
+SocketAckEmitter; // FIX: unrecognized class issue
+OnAckCallback; // FIX: unrecognized class issue
+SocketEngine; // FIX: unrecognized class issue
 
 export { SocketOptions, enableDebug, disableDebug };
 

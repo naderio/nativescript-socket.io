@@ -1,9 +1,5 @@
 'use strict';
 
-declare var NSNull;
-declare var NSDictionary;
-declare var NSArray;
-
 export function serialize(data: any): any {
   switch (typeof data) {
     case 'string':
