@@ -5,13 +5,11 @@
         "removeComments": true,
         "experimentalDecorators": true,
         "lib": [
-            "es2016"
+            "es6"
         ],
         "sourceMap": true
     },
     "files": [
-
-        "./node_modules/tns-core-modules/tns-core-modules.es2016.d.ts",
 
         "./node_modules/tns-platform-declarations/ios.d.ts",
         "./node_modules/tns-platform-declarations/android.d.ts",
