@@ -14,7 +14,7 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "android-generate-typing": "cd demo ; tns build android ; java -jar platforms/android/build-tools/dts-generator.jar -input $(find platforms/ -name 'socket.io-client-**.jar'); cd ..",
-    "ios-generate-typing": "cd demo ; TNS_TYPESCRIPT_DECLARATIONS_PATH="$(pwd)/typings" tns build ios ; cd .."
+    "ios-generate-typing": "cd demo ; TNS_TYPESCRIPT_DECLARATIONS_PATH=$(pwd)/typings tns build ios ; cd .."
   },
   "repository": {
     "type": "git",
