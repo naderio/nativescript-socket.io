@@ -15,13 +15,14 @@
         "./node_modules/tns-platform-declarations/android.d.ts",
 
         "./typings/android.d.ts",
-        "./typings/objc!SocketIO.d.ts",
+        "./typings/ios.d.ts",
 
         "socket.android.ts",
         "socket.ios.ts",
         "helpers.android.ts",
         "helpers.ios.ts",
         "common.ts"
+
     ],
     "compileOnSave": false
 }

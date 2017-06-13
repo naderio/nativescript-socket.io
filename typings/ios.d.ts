@@ -8,6 +8,21 @@ declare class OnAckCallback extends NSObject {
 	timingOutAfterCallback(seconds: number, callback: (p1: NSArray<any>) => void): void;
 }
 
+declare class SSLCert extends NSObject {
+
+	static alloc(): SSLCert; // inherited from NSObject
+
+	static new(): SSLCert; // inherited from NSObject
+
+	constructor(o: { data: NSData; });
+
+	constructor(o: { key: any; });
+
+	initWithData(data: NSData): this;
+
+	initWithKey(key: any): this;
+}
+
 declare class SocketAckEmitter extends NSObject {
 
 	static alloc(): SocketAckEmitter; // inherited from NSObject
@@ -81,8 +96,6 @@ declare class SocketEngine extends NSObject implements NSURLSessionDelegate, Soc
 
 	readonly description: string; // inherited from NSObjectProtocol
 
-	readonly doubleEncodeUTF8: boolean; // inherited from SocketEngineSpec
-
 	readonly extraHeaders: NSDictionary<string, string>; // inherited from SocketEngineSpec
 
 	readonly fastUpgrade: boolean; // inherited from SocketEngineSpec
@@ -149,7 +162,7 @@ declare class SocketEngine extends NSObject implements NSURLSessionDelegate, Soc
 
 	parseEngineData(data: NSData): void;
 
-	parseEngineMessageFromPolling(message: string, fromPolling: boolean): void;
+	parseEngineMessage(message: string): void;
 
 	performSelector(aSelector: string): any;
 
@@ -216,8 +229,6 @@ interface SocketEngineSpec {
 
 	cookies: NSArray<NSHTTPCookie>;
 
-	doubleEncodeUTF8: boolean;
-
 	extraHeaders: NSDictionary<string, string>;
 
 	fastUpgrade: boolean;
@@ -256,7 +267,7 @@ interface SocketEngineSpec {
 
 	parseEngineData(data: NSData): void;
 
-	parseEngineMessageFromPolling(message: string, fromPolling: boolean): void;
+	parseEngineMessage(message: string): void;
 
 	writeWithTypeWithData(msg: string, type: SocketEnginePacketType, data: NSArray<NSData>): void;
 }

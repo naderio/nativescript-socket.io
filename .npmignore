@@ -1,4 +1,5 @@
 demo/
+demo.server/
 *.ts
 !common.d.ts
 !helpers.d.ts

@@ -1,7 +1,7 @@
 node_modules
 *.js
 !demo/app/*.js
-!demo/server/*.js
+!demo.server/*.js
 *.map
 *.d.ts
 !references.d.ts
@@ -10,6 +10,7 @@ node_modules
 !socket.d.ts
 !typings/*
 typings-*
+out
 demo/platforms
 demo/node_modules
 .DS_Store
