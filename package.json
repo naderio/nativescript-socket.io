@@ -13,9 +13,9 @@
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "rsync -avz --delete ./*.js demo/dev/",
+    "dev": "rsync -avz --delete ./*.js demo/app/dev/",
     "android-native-type-definition": "cd demo ; tns build android ; java -jar platforms/android/build-tools/dts-generator.jar -input $(find ./ -name 'engine.io-client-*.jar') -input $(find ./ -name 'socket.io-client-*.jar') ; cp -f ./out/android.d.ts ../typings/android.d.ts ; rm -fr ./out ; cd ..",
-    "ios-native-type-definition": "cd demo ; TNS_TYPESCRIPT_DECLARATIONS_PATH=$(pwd)/typings tns build ios ; cp -f './typings-x86_64/objc!SocketIO.d.ts' ../typings/ios.d.ts ; rm -fr /typings-* ; cd .."
+    "ios-native-type-definition": "cd demo ; TNS_TYPESCRIPT_DECLARATIONS_PATH=$(pwd)/typings tns build ios ; cp -f './typings-x86_64/objc!SocketIO.d.ts' ../typings/ios.d.ts ; rm -fr ./typings* ; cd .."
   },
   "repository": {
     "type": "git",
