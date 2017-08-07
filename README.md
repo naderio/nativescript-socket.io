@@ -1,6 +1,8 @@
 nativescript-socket.io
 ======================
 
+Socket.io implementation in NativeScript.
+
 # State
 
 Android and iOS implementations are stable and in sync.
@@ -9,9 +11,9 @@ Please check [releases and changelog](https://github.com/naderio/nativescript-so
 
 # Dependencies
 
-Android: Socket.IO-client Java v0.8.*
+Android: [Socket.IO-client Java](socketio/socket.io-client-javahttps://github.com/socketio/socket.io-client-java) v1.0.*
 
-iOS: Socket.IO-Client-Swift v8.1.*
+iOS: [Socket.IO-Client-Swift](https://github.com/socketio/socket.io-client-swift) v11.0.*
 
 # Install
 

@@ -16,7 +16,7 @@
     "nativescript-app-base": "file:plugins/nativescript-app-base",
     "nativescript-socket.io": "file:..",
     "nativescript-unit-test-runner": "0.3.4",
-    "tns-core-modules": "3.0.1"
+    "tns-core-modules": "^3.1.0"
   },
   "devDependencies": {
     "babel-traverse": "6.25.0",
@@ -29,7 +29,7 @@
     "karma-nativescript-launcher": "0.4.0",
     "lazy": "1.0.11",
     "mocha": "3.4.2",
-    "nativescript-dev-typescript": "0.4.5",
-    "typescript": "2.3.4"
+    "nativescript-dev-typescript": "^0.5.0",
+    "typescript": "~2.3.4"
   }
 }
