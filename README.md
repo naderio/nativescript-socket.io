@@ -11,9 +11,9 @@ Please check [releases and changelog](https://github.com/naderio/nativescript-so
 
 # Dependencies
 
-Android: [Socket.IO-client Java](socketio/socket.io-client-javahttps://github.com/socketio/socket.io-client-java) v1.0.*
+Android: [Socket.IO-client Java](https://github.com/socketio/socket.io-client-java) v1.*
 
-iOS: [Socket.IO-Client-Swift](https://github.com/socketio/socket.io-client-swift) v11.0.*
+iOS: [Socket.IO-Client-Swift](https://github.com/socketio/socket.io-client-swift) v11.*
 
 # Install
 

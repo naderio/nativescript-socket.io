@@ -1,5 +1,8 @@
 node_modules
 *.js
+demo/dev
+demo/platforms
+demo/node_modules
 !demo/app/*.js
 !demo.server/*.js
 *.map
@@ -11,9 +14,8 @@ node_modules
 !typings/*
 typings-*
 out
-demo/platforms
-demo/node_modules
 .DS_Store
 *.log
 lib
 .tmp
+*.tgz

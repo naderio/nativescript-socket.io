@@ -8,3 +8,4 @@ demo.server/
 *.json
 *.log
 .tmp
+*.tgz
