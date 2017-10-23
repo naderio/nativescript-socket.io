@@ -109,45 +109,51 @@ tns run android
 
 make sure to put your IP address in `./demo/app/main-page.js` (`var socket = SocketIO.connect('http://192.168.1.111:3210');`).
 
-expect the following on app:
+expect the following on server:
 
 ```
-DEBUG socket.io connect +87708
-DEBUG socket.io on hi [] +1063
+DEBUG socket.io connect +108220
+DEBUG socket.io soc.request._query {
+  "EIO": "3",
+  "transport": "polling",
+  "token": "123",
+  "scope": "client"
+} +23
+DEBUG socket.io on hi [] +1589
 DEBUG socket.io on hi [
   false
 ] +3
 DEBUG socket.io on hi [
   true
-] +0
+] +2
 DEBUG socket.io on hi [
   -1
-] +11
+] +1
 DEBUG socket.io on hi [
   0
-] +12
+] +1
 DEBUG socket.io on hi [
   1
-] +1
+] +0
 DEBUG socket.io on hi [
   ""
-] +2
+] +1
 DEBUG socket.io on hi [
   "..."
-] +2
+] +0
 DEBUG socket.io on hi [
   {
-    "a": 1,
-    "b": 2
+    "b": 2,
+    "a": 1
   }
-] +1
+] +0
 DEBUG socket.io on hi [
   [
     "a",
     "b",
     "c"
   ]
-] +0
+] +1
 DEBUG socket.io on hi [
   -1,
   false,
@@ -155,8 +161,8 @@ DEBUG socket.io on hi [
   "",
   "...",
   {
-    "a": 1,
-    "b": 2
+    "b": 2,
+    "a": 1
   },
   [
     "a",
@@ -167,12 +173,12 @@ DEBUG socket.io on hi [
     {
       "a": 1
     },
-    "2016-01-01T05:00:00.000Z",
+    "2016-01-01T00:00:00.000Z",
     true,
     15,
     ".."
   ]
-] +1
+] +3
 DEBUG socket.io on hi [
   [
     -1,
@@ -181,8 +187,8 @@ DEBUG socket.io on hi [
     "",
     "...",
     {
-      "a": 1,
-      "b": 2
+      "b": 2,
+      "a": 1
     },
     [
       "a",
@@ -193,103 +199,107 @@ DEBUG socket.io on hi [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   ]
-] +1
+] +17
 DEBUG socket.io on hi [
   {
     "-1": 1,
-    "false": false,
-    "true": true,
-    "empty string": "",
     "string": "...",
-    "object": {
-      "a": 1,
-      "b": 2
-    },
+    "true": true,
+    "false": false,
     "array of strings": [
       "a",
       "b",
       "c"
     ],
+    "object": {
+      "b": 2,
+      "a": 1
+    },
+    "empty string": "",
     "array of mixed": [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   }
-] +2
-DEBUG socket.io on ack [] +961
+] +35
+DEBUG socket.io on ack [] +925
 DEBUG socket.io on ack ack [
   5,
   {
     "test": true
   }
-] +5
+] +6
 DEBUG socket.io on getAckDate [
   "whatever",
   null
-] +1026
-DEBUG socket.io on getDate [] +970
-DEBUG socket.io on getDateObj [] +1001
-DEBUG socket.io on getUtf8 [] +1001
-DEBUG socket.io on hi [] +4004
-DEBUG socket.io on hi [] +2000
+] +993
+DEBUG socket.io on getDate [] +1010
+DEBUG socket.io on getDateObj [] +990
+DEBUG socket.io on getUtf8 [] +1000
+DEBUG socket.io on hi [] +4005
+DEBUG socket.io on hi [] +2002
 DEBUG socket.io on hi [] +2004
 DEBUG socket.io on hi [] +2002
-DEBUG socket.io on hi [] +2006
-
+DEBUG socket.io on hi [] +2003
+DEBUG socket.io on hi [] +2002
+DEBUG socket.io on hi [] +2001
+DEBUG socket.io on hi [] +2003
+DEBUG socket.io on hi [] +2002
+DEBUG socket.io on hi [] +2003
 ```
 
-and the following on server:
+and the following on app:
 
 ```
-DEBUG socket.io on connect []  +573
+DEBUG socket.io on connect []  +2266
 DEBUG app/main-page.js connect +3
 DEBUG app/main-page.js emit hi +1010
 DEBUG socket.io emit hi []  +0
 DEBUG socket.io emit hi [
   false
-]  +2
+]  +1
 DEBUG socket.io emit hi [
   true
-]  +2
-DEBUG socket.io emit hi [
-  -1
 ]  +0
 DEBUG socket.io emit hi [
-  0
+  -1
 ]  +1
 DEBUG socket.io emit hi [
+  0
+]  +0
+DEBUG socket.io emit hi [
   1
-]  +3
+]  +0
 DEBUG socket.io emit hi [
   ""
-]  +3
+]  +0
 DEBUG socket.io emit hi [
   "..."
-]  +3
+]  +0
 DEBUG socket.io emit hi [
   {
     "a": 1,
     "b": 2
   }
-]  +1
+]  +0
 DEBUG socket.io emit hi [
   [
     "a",
     "b",
     "c"
   ]
-]  +2
+]  +1
 DEBUG socket.io emit hi [
   -1,
   false,
@@ -309,12 +319,12 @@ DEBUG socket.io emit hi [
     {
       "a": 1
     },
-    "2016-01-01T05:00:00.000Z",
+    "2016-01-01T00:00:00.000Z",
     true,
     15,
     ".."
   ]
-]  +4
+]  +1
 DEBUG socket.io emit hi [
   [
     -1,
@@ -335,13 +345,13 @@ DEBUG socket.io emit hi [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   ]
-]  +1
+]  +0
 DEBUG socket.io emit hi [
   {
     "-1": 1,
@@ -362,38 +372,38 @@ DEBUG socket.io emit hi [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   }
-]  +1
-DEBUG socket.io on hi []  +1
-DEBUG app/main-page.js on hi +0
+]  +28
+DEBUG socket.io on hi []  +9
+DEBUG app/main-page.js on hi +1
 DEBUG socket.io on hi [
   false
-]  +2
-DEBUG app/main-page.js on hi +2
+]  +8
+DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   true
-]  +1
+]  +8
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   -1
-]  +4
-DEBUG app/main-page.js on hi +1
-DEBUG socket.io on hi [
-  0
-]  +2
-DEBUG app/main-page.js on hi +0
-DEBUG socket.io on hi [
-  1
 ]  +1
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
+  0
+]  +0
+DEBUG app/main-page.js on hi +1
+DEBUG socket.io on hi [
+  1
+]  +6
+DEBUG app/main-page.js on hi +0
+DEBUG socket.io on hi [
   ""
-]  +3
+]  +7
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   "..."
@@ -401,10 +411,10 @@ DEBUG socket.io on hi [
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   {
-    "a": 1,
-    "b": 2
+    "b": 2,
+    "a": 1
   }
-]  +4
+]  +5
 DEBUG app/main-page.js on hi +1
 DEBUG socket.io on hi [
   [
@@ -412,7 +422,7 @@ DEBUG socket.io on hi [
     "b",
     "c"
   ]
-]  +1
+]  +7
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   -1,
@@ -421,8 +431,8 @@ DEBUG socket.io on hi [
   "",
   "...",
   {
-    "a": 1,
-    "b": 2
+    "b": 2,
+    "a": 1
   },
   [
     "a",
@@ -433,7 +443,7 @@ DEBUG socket.io on hi [
     {
       "a": 1
     },
-    "2016-01-01T05:00:00.000Z",
+    "2016-01-01T00:00:00.000Z",
     true,
     15,
     ".."
@@ -448,8 +458,8 @@ DEBUG socket.io on hi [
     "",
     "...",
     {
-      "a": 1,
-      "b": 2
+      "b": 2,
+      "a": 1
     },
     [
       "a",
@@ -460,125 +470,132 @@ DEBUG socket.io on hi [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   ]
-]  +1
+]  +17
 DEBUG app/main-page.js on hi +0
 DEBUG socket.io on hi [
   {
     "-1": 1,
+    "string": "...",
     "false": false,
     "true": true,
-    "empty string": "",
-    "string": "...",
-    "object": {
-      "a": 1,
-      "b": 2
-    },
     "array of strings": [
       "a",
       "b",
       "c"
     ],
+    "object": {
+      "b": 2,
+      "a": 1
+    },
+    "empty string": "",
     "array of mixed": [
       {
         "a": 1
       },
-      "2016-01-01T05:00:00.000Z",
+      "2016-01-01T00:00:00.000Z",
       true,
       15,
       ".."
     ]
   }
-]  +3
+]  +17
 DEBUG app/main-page.js on hi +0
-DEBUG app/main-page.js emit ack +946
+DEBUG app/main-page.js emit ack +877
 DEBUG socket.io emit ack []  +0
-DEBUG socket.io on ack [] ack +4
-DEBUG app/main-page.js on ack +1
+DEBUG socket.io on ack [] ack +2
+DEBUG app/main-page.js on ack +0
 DEBUG socket.io on ack ack [
   5,
   {
     "test": true
   }
-] +0
-DEBUG socket.io on got it []  +3
+] +1
+DEBUG socket.io on got it []  +2
 DEBUG app/main-page.js on got it undefined +0
-DEBUG app/main-page.js emit getAckDate +992
+DEBUG app/main-page.js emit getAckDate +994
 DEBUG socket.io emit getAckDate [
   "whatever"
-] ack +0
+] ack +1
 DEBUG socket.io emit getAckDate ack [
   "2017-01-01T00:00:00.000Z"
-] +63
-DEBUG app/main-page.js emit getAckDate ack "2017-01-01T00:00:00.000Z" +0
-DEBUG app/main-page.js emit getDate +938
+] +3
+DEBUG app/main-page.js emit getAckDate ack "2017-01-01T00:00:00.000Z" +1
+DEBUG app/main-page.js emit getDate +996
 DEBUG socket.io emit getDate []  +0
 DEBUG socket.io on takeDate [
   "2017-01-01T00:00:00.000Z"
-]  +4
-DEBUG app/main-page.js on takeDate "2017-01-01T00:00:00.000Z" +1
-DEBUG app/main-page.js emit getDateObj +995
-DEBUG socket.io emit getDateObj []  +1
+]  +2
+DEBUG app/main-page.js on takeDate "2017-01-01T00:00:00.000Z" +0
+DEBUG app/main-page.js emit getDateObj +998
+DEBUG socket.io emit getDateObj []  +0
 DEBUG socket.io on takeDateObj [
   {
     "date": "2017-01-01T00:00:00.000Z"
   }
-]  +6
+]  +2
 DEBUG app/main-page.js on takeDateObj {"date":"2017-01-01T00:00:00.000Z"} +0
-DEBUG app/main-page.js emit getUtf8 +995
+DEBUG app/main-page.js emit getUtf8 +998
 DEBUG socket.io emit getUtf8 []  +0
 DEBUG socket.io on takeUtf8 [
   "てすと"
-]  +9
+]  +2
 DEBUG app/main-page.js on takeUtf8 "てすと" +0
 DEBUG socket.io on takeUtf8 [
   "Я Б Г Д Ж Й"
 ]  +1
-DEBUG app/main-page.js on takeUtf8 "Я Б Г Д Ж Й" +1
+DEBUG app/main-page.js on takeUtf8 "Я Б Г Д Ж Й" +0
 DEBUG socket.io on takeUtf8 [
   "Ä ä Ü ü ß"
-]  +0
-DEBUG app/main-page.js on takeUtf8 "Ä ä Ü ü ß" +1
-DEBUG socket.io on takeUtf8 [
-  "utf8 — string"
 ]  +1
-DEBUG app/main-page.js on takeUtf8 "utf8 — string" +1
+DEBUG app/main-page.js on takeUtf8 "Ä ä Ü ü ß" +0
 DEBUG socket.io on takeUtf8 [
   "utf8 — string"
 ]  +1
 DEBUG app/main-page.js on takeUtf8 "utf8 — string" +0
-DEBUG app/main-page.js emit hi +3988
-DEBUG socket.io emit hi []  +0
-DEBUG socket.io on hi []  +4
-DEBUG app/main-page.js on hi +0
-DEBUG app/main-page.js emit hi +1997
+DEBUG socket.io on takeUtf8 [
+  "utf8 — string"
+]  +1
+DEBUG app/main-page.js on takeUtf8 "utf8 — string" +0
+DEBUG app/main-page.js emit hi +3997
 DEBUG socket.io emit hi []  +0
 DEBUG socket.io on hi []  +3
 DEBUG app/main-page.js on hi +0
-DEBUG app/main-page.js emit hi +2000
+DEBUG app/main-page.js emit hi +1999
 DEBUG socket.io emit hi []  +0
-DEBUG socket.io on hi []  +5
+DEBUG socket.io on hi []  +8
 DEBUG app/main-page.js on hi +0
-DEBUG app/main-page.js off hi +987
+DEBUG app/main-page.js emit hi +1995
+DEBUG socket.io emit hi []  +0
+DEBUG socket.io on hi []  +8
+DEBUG app/main-page.js on hi +0
+DEBUG app/main-page.js off hi +983
 DEBUG socket.io off hi function hiListener(data) {
             debug('on', 'hi');
-        } +0
-DEBUG app/main-page.js emit hi +1011
+        } +1
+DEBUG app/main-page.js emit hi +1009
 DEBUG socket.io emit hi []  +0
 DEBUG app/main-page.js emit hi +2002
-DEBUG socket.io emit hi []  +0
+DEBUG socket.io emit hi []  +1
 DEBUG app/main-page.js off hi +1988
 DEBUG socket.io off hi undefined +0
-DEBUG app/main-page.js emit hi +16
+DEBUG app/main-page.js emit hi +15
 DEBUG socket.io emit hi []  +0
 DEBUG app/main-page.js emit hi +2003
 DEBUG socket.io emit hi []  +0
-DEBUG app/main-page.js emit hi +2004
+DEBUG app/main-page.js emit hi +2003
+DEBUG socket.io emit hi []  +0
+DEBUG app/main-page.js emit hi +2001
 DEBUG socket.io emit hi []  +1
+DEBUG socket.io once hi []  +4
+DEBUG app/main-page.js on hi +1
+DEBUG app/main-page.js emit hi +1997
+DEBUG socket.io emit hi []  +0
+DEBUG app/main-page.js disconnect +1976
 
 ```
