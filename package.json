@@ -1,6 +1,6 @@
 {
   "name": "nativescript-socket.io",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Socket.IO fully-featured and compliant client implementation for NativeScript",
   "main": "socketio",
   "typings": "index.d.ts",
