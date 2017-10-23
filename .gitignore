@@ -8,9 +8,9 @@ demo/node_modules
 *.map
 *.d.ts
 !references.d.ts
-!common.d.ts
 !helpers.d.ts
-!socket.d.ts
+!socketio.common.d.ts
+!index.d.ts
 !typings/*
 typings-*
 out

@@ -1,8 +1,8 @@
-import { SocketBase, SocketOptions, enableDebug, disableDebug } from "./common";
+import { Common, SocketOptions, enableDebug, disableDebug } from "./socketio.common";
 
 export { SocketOptions, enableDebug, disableDebug };
 
-export declare class Socket extends SocketBase {
+export declare class SocketIO extends Common {
     private ios: any;
     private android: any;
 
@@ -28,4 +28,4 @@ export declare class Socket extends SocketBase {
     // hasListeners(event: string): boolean;
 }
 
-export declare function connect(uri: string, options?: SocketOptions): Socket;
+export declare function connect(uri: string, options?: SocketOptions): SocketIO;

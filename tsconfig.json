@@ -17,11 +17,11 @@
         "./typings/android.d.ts",
         "./typings/ios.d.ts",
 
-        "socket.android.ts",
-        "socket.ios.ts",
         "helpers.android.ts",
         "helpers.ios.ts",
-        "common.ts"
+        "socketio.common.ts",
+        "socketio.android.ts",
+        "socketio.ios.ts"
 
     ],
     "compileOnSave": false

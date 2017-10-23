@@ -1,6 +1,4 @@
-'use strict';
-
-import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
+import { Common, SocketOptions, enableDebug, disableDebug, debug } from "./socketio.common";
 import { serialize, deserialize } from "./helpers";
 
 const _Emitter = io.socket.emitter.Emitter;
@@ -12,7 +10,7 @@ export { SocketOptions, enableDebug, disableDebug };
 
 const SOCKET_CLASS : string = 'io.socket.client.Socket';
 
-export class Socket extends SocketBase {
+export class SocketIO extends Common {
 
     private android: io.socket.client.Socket;
 
@@ -163,9 +161,9 @@ export class Socket extends SocketBase {
     }
 }
 
-export function connect(uri: string, options?: SocketOptions): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
+export function connect(uri: string, options?: SocketOptions): SocketIO {
+    let socketio = new SocketIO(uri, options || {});
+    socketio.connect();
+    return socketio;
 }
 

@@ -4,7 +4,7 @@ export interface SocketOptions {
     ios?: any;
 }
 
-export abstract class SocketBase {
+export abstract class Common {
     protected _listeners = new WeakMap();
 
     abstract get connected(): boolean;

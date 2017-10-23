@@ -1,6 +1,6 @@
 'use strict';
 
-import { SocketBase, SocketOptions, enableDebug, disableDebug, debug } from "./common";
+import { Common, SocketOptions, enableDebug, disableDebug, debug } from "./socketio.common";
 import { serialize, deserialize } from "./helpers";
 
 SocketIOClient; // FIX: unrecognized class issue
@@ -12,7 +12,7 @@ export { SocketOptions, enableDebug, disableDebug };
 
 const NAMESPACE_REGEXP : RegExp = /^https?\:\/\/[^\/]*(\/.*)$/i;
 
-export class Socket extends SocketBase {
+export class SocketIO extends Common {
 
     private ios: SocketIOClient;
 
@@ -149,9 +149,9 @@ export class Socket extends SocketBase {
     }
 }
 
-export function connect(uri: string, options?: SocketOptions): Socket {
-    let socket = new Socket(uri, options || {});
-    socket.connect();
-    return socket;
+export function connect(uri: string, options?: SocketOptions): SocketIO {
+    let socketio = new SocketIO(uri, options || {});
+    socketio.connect();
+    return socketio;
 }
 

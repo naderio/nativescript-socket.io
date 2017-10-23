@@ -4,7 +4,7 @@ export interface SocketOptions {
     ios?: any;
 }
 
-export declare abstract class SocketBase {
+export declare abstract class Common {
     protected _listeners: any;
 
     readonly connected: boolean;

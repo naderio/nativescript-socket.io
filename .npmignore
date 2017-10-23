@@ -1,10 +1,10 @@
 demo/
 demo.server/
-*.ts
-!common.d.ts
-!helpers.d.ts
-!socket.d.ts
 *.map
+*.ts
+!socketio.common.d.ts
+!helpers.d.ts
+!index.d.ts
 *.json
 *.log
 .tmp
