@@ -96,7 +96,7 @@ const SocketIO = require("nativescript-socket.io")
 first start the socket.io demo server
 
 ```sh
-cd ./demo/server
+cd ./demo.server
 npm start
 ```
 
