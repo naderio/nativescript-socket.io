@@ -1,7 +1,7 @@
 nativescript-socket.io
 ======================
 
-Socket.IO fully-featured and compliant client implementation for NativeScript.
+Full-featured Socket.IO client implementation for NativeScript.
 
 # Status
 

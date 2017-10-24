@@ -1,7 +1,7 @@
 {
   "name": "nativescript-socket.io",
-  "version": "0.8.1",
-  "description": "Socket.IO fully-featured and compliant client implementation for NativeScript",
+  "version": "0.8.2",
+  "description": "Full-featured Socket.IO client implementation for NativeScript",
   "main": "socketio",
   "typings": "index.d.ts",
   "nativescript": {
@@ -23,12 +23,15 @@
   },
   "keywords": [
     "NativeScript",
+    "ecosystem:nativeScript",
     "JavaScript",
-    "TypescriptScript",
+    "TypeScript",
     "Android",
     "iOS",
+    "WebSocket",
     "Socket.IO",
-    "WebSocket"
+    "SocketIO",
+    "Socket"
   ],
   "author": "Nader Toukabri <ping@nader.tech>",
   "license": "Unlicense",
