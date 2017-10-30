@@ -597,5 +597,4 @@ DEBUG app/main-page.js on hi +1
 DEBUG app/main-page.js emit hi +1997
 DEBUG socket.io emit hi []  +0
 DEBUG app/main-page.js disconnect +1976
-
 ```

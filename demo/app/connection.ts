@@ -3,7 +3,9 @@
 import * as SocketIO from 'nativescript-socket.io';
 // import * as SocketIO from './dev';
 
-export var socketio = SocketIO.connect('http://192.168.1.111:3210/demo', <SocketIO.SocketOptions>{
+const ENDPOINT = 'http://192.168.1.111:3210/demo';
+
+const OPTIONS = <SocketIO.SocketOptions>{
     // log: true,
     // secure: false,
     // forceWebsockets: true,
@@ -12,4 +14,6 @@ export var socketio = SocketIO.connect('http://192.168.1.111:3210/demo', <Socket
         scope: 'client',
         token: '123',
     },
-});
+};
+
+export var socketio = SocketIO.connect(ENDPOINT, OPTIONS);
