@@ -16,4 +16,4 @@ const OPTIONS = <SocketIO.SocketOptions>{
     },
 };
 
-export var socketio = SocketIO.connect(ENDPOINT, OPTIONS);
+export const instance = SocketIO.connect(ENDPOINT, OPTIONS);

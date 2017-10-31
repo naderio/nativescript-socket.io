@@ -44,7 +44,7 @@ function onLoaded(args) {
     //     },
     // });
 
-    socketio = require('./connection').socketio;
+    socketio = require('./socketio').instance;
     
     // setInterval(function() {
     //     debug('socketio.connected', socketio.connected);
