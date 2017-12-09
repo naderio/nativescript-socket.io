@@ -44,6 +44,12 @@ const options = {
   query: {
     token: 'SOME_TOKEN_HERE',
   },
+  android: {
+    // http://socketio.github.io/socket.io-client-java/apidocs/io/socket/client/IO.Options.html
+  }
+  ios: {
+    // https://nuclearace.github.io/Socket.IO-Client-Swift/Enums/SocketIOClientOption.html
+  }
 };
 
 const socketio = SocketIO.connect('http://somewhere/namespace', options);

@@ -5,6 +5,8 @@ demo/platforms
 demo/node_modules
 !demo/app/*.js
 !demo.server/*.js
+demo/app/socketio.js
+demo/app/socketio.js
 *.map
 *.d.ts
 !references.d.ts
@@ -19,3 +21,4 @@ out
 lib
 .tmp
 *.tgz
+
