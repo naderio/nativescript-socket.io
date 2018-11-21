@@ -1,1 +1,1 @@
-pod 'Socket.IO-Client-Swift', '~> 11.0'
+pod 'Socket.IO-Client-Swift', '~> 13.3.0'
