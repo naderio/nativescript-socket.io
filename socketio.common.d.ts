@@ -1,7 +1,6 @@
 export interface SocketOptions {
     query?: string | Object;
-    // forceNew?: boolean;
-    // path?: string;
+    forceWebsockets?: boolean,
     android?: any;
     ios?: any;
 }

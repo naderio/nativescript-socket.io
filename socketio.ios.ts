@@ -42,6 +42,10 @@ export class SocketIO extends Common {
             }
         }
 
+        if (options.forceWebsockets) {
+            _options.forceWebsockets = true;
+        }
+
         // if ('secure' in options) {
         //     _options.secure = !!options.secure;
         // }

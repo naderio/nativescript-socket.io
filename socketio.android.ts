@@ -30,6 +30,11 @@ export class SocketIO extends Common {
             }
         }
 
+        if (options.forceWebsockets) {
+            _options.transports = Array.create(java.lang.String, 1);
+            _options.transports[0] = 'websocket';
+        }
+
         // if ('secure' in options) {
         //     _options.secure = !!options.secure;
         // }
