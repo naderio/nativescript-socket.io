@@ -1,4 +1,5 @@
-var application = require("application");
+
+const application = require("tns-core-modules/application");
 
 var debug = require('./debug')(__filename);
 
@@ -8,7 +9,4 @@ application.on(application.uncaughtErrorEvent, function (event) {
   debug('ERROR!', error.name, error.message, error.stackTrace, error.nativeException);
 });
 
-
-application.start({
-  moduleName: "main-page"
-});
+application.run({ moduleName: "app-root" });

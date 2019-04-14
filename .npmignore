@@ -9,3 +9,5 @@ demo.server/
 *.log
 .tmp
 *.tgz
+hooks/after-prepare/nativescript-unit-test-runner.js
+app/tests/example.js
