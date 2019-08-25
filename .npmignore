@@ -1,5 +1,4 @@
-demo/
-demo.server/
+demo*/
 *.map
 *.ts
 !socketio.common.d.ts

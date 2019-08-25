@@ -57,6 +57,7 @@ export function debugDefault(...args: Array<any>) {
         return value;
     });
     args.unshift('nativescript-socket.io');
+    // @ts-ignore
     console.log.apply(console, args);
 }
 

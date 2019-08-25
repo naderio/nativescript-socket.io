@@ -62,7 +62,7 @@ export class SocketIO extends Common {
     }
 
     on(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
-        let listener = function(args) {
+        const listener = function(args) {
             let payload = Array.prototype.slice.call(args);
             let ack = payload.pop();
             if (typeof ack === 'undefined') {
@@ -83,16 +83,16 @@ export class SocketIO extends Common {
             }
             callback.apply(null, payload);
         };
-        listener = new _Emitter.Listener({
+        const nativeListener = new _Emitter.Listener({
             call: listener,
         });
-        this._listeners.set(callback, listener);
-        this.android.on(event, listener);
+        this._listeners.set(callback, nativeListener );
+        this.android.on(event, nativeListener);
         return this;
     }
 
     once(event: string, callback: (...payload: Array<any> /*, ack?: Function */) => any) {
-        let listener = function(args) {
+        const listener = function(args) {
             let payload = Array.prototype.slice.call(args);
             let ack = payload.pop();
             if (typeof ack === 'undefined') {
@@ -113,11 +113,11 @@ export class SocketIO extends Common {
             }
             callback.apply(null, payload);
         };
-        listener = new _Emitter.Listener({
+        const nativeListener = new _Emitter.Listener({
             call: listener,
         });
-        this._listeners.set(callback, listener);
-        this.android.once(event, listener);
+        this._listeners.set(callback, nativeListener);
+        this.android.once(event, nativeListener);
         return this;
     }
 
@@ -151,10 +151,10 @@ export class SocketIO extends Common {
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            _ack = new _Ack({
+            const _nativeAck = new _Ack({
                 call: _ack,
             });
-            payload.push(_ack);
+            payload.push(_nativeAck);
         }
         this.android.emit(event, payload);
         return this;

@@ -86,6 +86,7 @@ export class SocketIO extends Common {
             }
             callback.apply(null, payload);
         };
+        // @ts-ignore
         let listenerId = this.ios.onCallback(event, listener);
         this._listeners.set(callback, listenerId);
         return this;
@@ -105,6 +106,7 @@ export class SocketIO extends Common {
             }
             callback.apply(null, payload);
         };
+        // @ts-ignore
         let listenerId = this.ios.onceCallback(event, listener);
         this._listeners.set(callback, listenerId);
         return this;
@@ -133,16 +135,17 @@ export class SocketIO extends Common {
             ack = null;
         }
         debug('emit', event, payload, ack ? 'ack' : '');
-        payload = payload.map(serialize);
+        // @ts-ignore
+        const _payload : NSArray<any> = payload.map(serialize);
         if (ack) {
             let _ack = function(args) {
                 args = deserialize(args);
                 debug('emit', event, 'ack', args);
                 ack.apply(null, args);
             };
-            this.ios.emitWithAckWith(event, payload).timingOutAfterCallback(0, _ack);
+            this.ios.emitWithAckWith(event, _payload).timingOutAfterCallback(0, _ack);
         } else {
-            this.ios.emitWith(event, payload);
+            this.ios.emitWith(event, _payload);
         }
         return this;
     }

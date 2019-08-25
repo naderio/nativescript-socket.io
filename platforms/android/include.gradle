@@ -1,12 +1,4 @@
 
-android {
-    productFlavors {
-        "nativescript-socket.io" {
-            dimension "nativescriptsocketio"
-        }
-    }
-}
-
 dependencies {
 
     compile ('io.socket:socket.io-client:1.+') {

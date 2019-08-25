@@ -1,9 +1,0 @@
-{
-  "name": "nativescript-app-base",
-  "version": "0.0.0",
-  "nativescript": {
-    "platforms": {
-      "ios": "2.3.0"
-    }
-  }
-}

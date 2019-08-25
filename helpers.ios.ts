@@ -17,6 +17,7 @@ export function serialize(data: any): any {
       }
 
       if (Array.isArray(data)) {
+        // @ts-ignore
         return NSArray.arrayWithArray(data.map(serialize));
       }
 
@@ -25,6 +26,7 @@ export function serialize(data: any): any {
         let value = data[key];
         node[key] = serialize(value);
       });
+      // @ts-ignore
       return NSDictionary.dictionaryWithDictionary(node);
 
     default:

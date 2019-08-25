@@ -1,8 +1,8 @@
-import * as SocketIO from 'nativescript-socket.io';
+const SocketIO = require('nativescript-socket.io');
 
 const ENDPOINT = 'http://192.168.1.111:3210/demo';
 
-const OPTIONS = <SocketIO.SocketOptions>{
+const OPTIONS = {
     // log: true,
     // secure: false,
     // forceWebsockets: true,
@@ -13,4 +13,4 @@ const OPTIONS = <SocketIO.SocketOptions>{
     },
 };
 
-export const instance = SocketIO.connect(ENDPOINT, OPTIONS);
+exports.instance = SocketIO.connect(ENDPOINT, OPTIONS);

@@ -99,18 +99,18 @@ const SocketIO = require("nativescript-socket.io")
 
 # Demo
 
-first start the socket.io demo server
+1. replace all instance of `192.168.1.111` with your IP address or domain.
+
+2. start the socket.io demo server
 
 ```sh
 cd ./demo.server
 npm start
 ```
 
-then build and run the app
+3. build and run the app
 
 ```sh
 cd ./demo
 tns run android
 ```
-
-make sure to put your IP address in `./demo/app/main-page.js` (`var socket = SocketIO.connect('http://192.168.1.111:3210');`).

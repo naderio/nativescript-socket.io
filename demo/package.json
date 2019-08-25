@@ -2,25 +2,22 @@
   "nativescript": {
     "id": "org.nativescript.socketio",
     "tns-android": {
-      "version": "5.3.1"
+      "version": "6.0.2"
     },
     "tns-ios": {
-      "version": "5.3.1"
+      "version": "6.0.2"
     }
   },
-  "main": "app.js",
   "description": "NativeScript Application",
   "license": "SEE LICENSE IN <your-license-filename>",
   "repository": "<fill-your-repository-here>",
   "dependencies": {
-    "nativescript-app-base": "file:app-base",
     "nativescript-socket.io": "file:dev",
-    "tns-core-modules": "~5.3.0"
+    "tns-core-modules": "~6.0.0"
   },
   "devDependencies": {
-    "nativescript-dev-typescript": "~0.9.0",
-    "nativescript-dev-webpack": "~0.21.0"
+    "nativescript-dev-webpack": "~1.1.0"
   },
-  "gitHead": "803cec054c44c99eaa59cdc267993e6346f6cb3a",
+  "gitHead": "42f2a6a9c94eaf9c68d2a41e0daaa1a2544bc28f",
   "readme": "NativeScript Application"
 }
