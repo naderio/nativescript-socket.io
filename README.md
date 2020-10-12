@@ -90,7 +90,7 @@ socketio.emit('hello-ack', {
 import using either of the following:
 
 ```typescript
-import * as SocketIO from "nativescript-socket.io"`
+import * as SocketIO from "nativescript-socket.io"
 
 // OR
 
